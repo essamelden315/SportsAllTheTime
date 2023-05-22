@@ -1,0 +1,6 @@
+framework module Pods_SportsAllTheTime_SportsAllTheTimeUITests {
+  umbrella header "Pods-SportsAllTheTime-SportsAllTheTimeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
