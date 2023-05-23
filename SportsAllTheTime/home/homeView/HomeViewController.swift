@@ -42,6 +42,8 @@ class HomeViewController: UICollectionViewController,HomeViewControllerInterface
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let league = self.storyboard?.instantiateViewController(withIdentifier: "league") as! LeaguesViewController
+        self.navigationController?.pushViewController(league, animated: true)
         print(listNames[indexPath.row])
     }
     
