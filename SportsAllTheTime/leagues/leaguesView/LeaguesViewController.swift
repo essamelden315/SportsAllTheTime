@@ -50,6 +50,8 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         return cell
    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let leagueDetails = self.storyboard?.instantiateViewController(withIdentifier: "details") as! LeaguesDetailsViewController
+        self.navigationController?.pushViewController(leagueDetails, animated: true)
         if(isFilterd!){
             print(filteredData[indexPath.row])
         }else{
@@ -58,7 +60,6 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         if(searchText.count == 0){
             isFilterd = false;
         }else{
@@ -68,7 +69,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
                 if(word.contains(searchText)){
                     filteredData.append(word)
                 }
-            } 
+            }
         }
         myTableView.reloadData()
     }
