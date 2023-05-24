@@ -10,10 +10,16 @@ import UIKit
 class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,LeaguesViewControllerInterface {
 
     @IBOutlet weak var myTableView: UITableView!
+    var leagueType:String?
     var listImgs = [String]()
     var listNames = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "\(leagueType! as String) Leagues"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        let font = UIFont(name: "Helvetica-Bold", size: 22)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font!]
+        
         myTableView.dataSource = self
         myTableView.delegate = self
         listImgs = ["football.jpeg","giraf.jpeg","bunny.jpeg","mario.jpeg"]
@@ -43,11 +49,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(listNames[indexPath.row])
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let margin: CGFloat = 19
-//           let contentHeight: CGFloat = 90 // Or whatever the height of your cell content is
-//           return contentHeight + (2 * margin)
-//    }
+
 
     
 

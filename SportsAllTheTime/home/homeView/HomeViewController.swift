@@ -16,6 +16,7 @@ class HomeViewController: UICollectionViewController,HomeViewControllerInterface
     var listNames = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset=UIEdgeInsets(top: 10, left: 5, bottom: 5, right: 5)
         layout.itemSize = CGSize(width: (myCollectionView.bounds.width*0.48), height: (myCollectionView.bounds.width*0.82))
@@ -43,6 +44,7 @@ class HomeViewController: UICollectionViewController,HomeViewControllerInterface
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let league = self.storyboard?.instantiateViewController(withIdentifier: "league") as! LeaguesViewController
+        league.leagueType = listNames[indexPath.row]
         self.navigationController?.pushViewController(league, animated: true)
         print(listNames[indexPath.row])
     }

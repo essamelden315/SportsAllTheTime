@@ -26,12 +26,8 @@ class LeagueTableViewCell: UITableViewCell {
        }
        
        private func configureCell() {
-           // Configure the appearance of the cell here
-           contentView.layer.borderWidth = 1
-           contentView.layer.borderColor = UIColor.gray.cgColor
-           contentView.layer.cornerRadius = 50
+           contentView.layer.cornerRadius = 20
            contentView.clipsToBounds = true
-           // Set the layout margins to add padding
            let padding: CGFloat = 16
            contentView.layoutMargins = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
        }
