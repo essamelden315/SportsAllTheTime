@@ -9,4 +9,6 @@ import Foundation
 import UIKit
 protocol LeaguesDetailsViewControllerInterface{
     func upComingEvents()-> NSCollectionLayoutSection
+    func showTeamsList()-> NSCollectionLayoutSection
+    func editNavigationBar()
 }

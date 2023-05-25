@@ -16,11 +16,12 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     var teams = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        editNavigationBar()
         let firstLayout = UICollectionViewCompositionalLayout { [self] sectionIndex, enviroment in
             return upComingEvents()   
         }
         let secondLayout = UICollectionViewCompositionalLayout { [self] sectionIndex, enviroment in
-            return foodCategorySection()
+            return showTeamsList()
         }
         firstCollectionView.setCollectionViewLayout(firstLayout, animated: true)
         secondColletionView.setCollectionViewLayout(secondLayout, animated: true)
@@ -53,10 +54,11 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if(collectionView == firstCollectionView){
-            print("first")
-        }else{
-            print("second")
+        if(collectionView == secondColletionView){
+            let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
+            teamDetails.logo = teams[indexPath.row]
+            teamDetails.name = teams[indexPath.row]
+            self.navigationController?.pushViewController(teamDetails, animated: true)
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,7 +67,6 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)as! DetailsTableViewCell
-        cell.backgroundColor = UIColor.yellow
         return cell
     }
       
@@ -96,7 +97,7 @@ extension LeaguesDetailsViewController{
            section.orthogonalScrollingBehavior = .continuous
            return section
        }
-    func foodCategorySection()-> NSCollectionLayoutSection {
+    func showTeamsList()-> NSCollectionLayoutSection {
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
             , heightDimension: .fractionalHeight(1))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -115,4 +116,9 @@ extension LeaguesDetailsViewController{
             
             return section
         }
+    func editNavigationBar(){
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        let font = UIFont(name: "Helvetica-Bold", size: 22)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font!]
+    }
 }

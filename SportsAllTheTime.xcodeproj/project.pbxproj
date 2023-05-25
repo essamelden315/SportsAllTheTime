@@ -15,6 +15,10 @@
 		DE33EDDE2A1D119200DA2EB2 /* CollectionView2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33EDDD2A1D119200DA2EB2 /* CollectionView2Cell.swift */; };
 		DE60CCE82A193DE9004F31AE /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60CCE72A193DE9004F31AE /* MyCollectionViewCell.swift */; };
 		DE6CE8572A1EFF0900F11719 /* LeaguesDetailsViewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CE8562A1EFF0900F11719 /* LeaguesDetailsViewControllerInterface.swift */; };
+		DE6CE85A2A1F060100F11719 /* DetailsLeaguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CE8592A1F060100F11719 /* DetailsLeaguePresenter.swift */; };
+		DE6CE85C2A1F060D00F11719 /* DetailsLeaguePresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CE85B2A1F060D00F11719 /* DetailsLeaguePresenterInterface.swift */; };
+		DE6CE8612A1F08DC00F11719 /* TeamsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CE8602A1F08DC00F11719 /* TeamsDetailsViewController.swift */; };
+		DE6CE8632A1F097300F11719 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CE8622A1F097300F11719 /* TeamTableViewCell.swift */; };
 		DE8368FB2A1B72D2002755F7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8368FA2A1B72D2002755F7 /* HomeViewController.swift */; };
 		DE9EC1A02A1CE234006CAD3D /* HomeViewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9EC19F2A1CE234006CAD3D /* HomeViewControllerInterface.swift */; };
 		DE9EC1A22A1CE249006CAD3D /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9EC1A12A1CE249006CAD3D /* HomePresenter.swift */; };
@@ -67,6 +71,10 @@
 		DE33EDDD2A1D119200DA2EB2 /* CollectionView2Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView2Cell.swift; sourceTree = "<group>"; };
 		DE60CCE72A193DE9004F31AE /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		DE6CE8562A1EFF0900F11719 /* LeaguesDetailsViewControllerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesDetailsViewControllerInterface.swift; sourceTree = "<group>"; };
+		DE6CE8592A1F060100F11719 /* DetailsLeaguePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsLeaguePresenter.swift; sourceTree = "<group>"; };
+		DE6CE85B2A1F060D00F11719 /* DetailsLeaguePresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsLeaguePresenterInterface.swift; sourceTree = "<group>"; };
+		DE6CE8602A1F08DC00F11719 /* TeamsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsDetailsViewController.swift; sourceTree = "<group>"; };
+		DE6CE8622A1F097300F11719 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		DE8368FA2A1B72D2002755F7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DE9EC19F2A1CE234006CAD3D /* HomeViewControllerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerInterface.swift; sourceTree = "<group>"; };
 		DE9EC1A12A1CE249006CAD3D /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -170,8 +178,35 @@
 		DE33EDDA2A1D115600DA2EB2 /* leagueDetailsPresenter */ = {
 			isa = PBXGroup;
 			children = (
+				DE6CE8592A1F060100F11719 /* DetailsLeaguePresenter.swift */,
+				DE6CE85B2A1F060D00F11719 /* DetailsLeaguePresenterInterface.swift */,
 			);
 			path = leagueDetailsPresenter;
+			sourceTree = "<group>";
+		};
+		DE6CE85D2A1F087E00F11719 /* teamsDetails */ = {
+			isa = PBXGroup;
+			children = (
+				DE6CE85F2A1F08AC00F11719 /* teamsPresenter */,
+				DE6CE85E2A1F088C00F11719 /* teamsView */,
+			);
+			path = teamsDetails;
+			sourceTree = "<group>";
+		};
+		DE6CE85E2A1F088C00F11719 /* teamsView */ = {
+			isa = PBXGroup;
+			children = (
+				DE6CE8602A1F08DC00F11719 /* TeamsDetailsViewController.swift */,
+				DE6CE8622A1F097300F11719 /* TeamTableViewCell.swift */,
+			);
+			path = teamsView;
+			sourceTree = "<group>";
+		};
+		DE6CE85F2A1F08AC00F11719 /* teamsPresenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = teamsPresenter;
 			sourceTree = "<group>";
 		};
 		DE9EC19C2A1CE1EF006CAD3D /* home */ = {
@@ -263,6 +298,7 @@
 		DEAAD46F2A1917980061CDCF /* SportsAllTheTime */ = {
 			isa = PBXGroup;
 			children = (
+				DE6CE85D2A1F087E00F11719 /* teamsDetails */,
 				DE33EDD82A1D113700DA2EB2 /* leagueDetails */,
 				DE9EC1A62A1CE33F006CAD3D /* leagues */,
 				DE9EC1A52A1CE31A006CAD3D /* splashScreen */,
@@ -539,13 +575,17 @@
 				DE9EC1AC2A1CE41F006CAD3D /* LeaguesViewControllerInterface.swift in Sources */,
 				DEAAD47B2A1917980061CDCF /* SportsAllTheTime.xcdatamodeld in Sources */,
 				DE60CCE82A193DE9004F31AE /* MyCollectionViewCell.swift in Sources */,
+				DE6CE8632A1F097300F11719 /* TeamTableViewCell.swift in Sources */,
 				DE9EC1B02A1CE46B006CAD3D /* LeaguesPresenterInterface.swift in Sources */,
 				DE9EC1A42A1CE251006CAD3D /* HomePresenterInterface.swift in Sources */,
 				DE9EC1A02A1CE234006CAD3D /* HomeViewControllerInterface.swift in Sources */,
 				DE8368FB2A1B72D2002755F7 /* HomeViewController.swift in Sources */,
 				DE33EDD72A1D10A400DA2EB2 /* LeaguesDetailsViewController.swift in Sources */,
+				DE6CE85C2A1F060D00F11719 /* DetailsLeaguePresenterInterface.swift in Sources */,
 				DEAAD4712A1917980061CDCF /* AppDelegate.swift in Sources */,
 				DE9EC1AA2A1CE414006CAD3D /* LeaguesViewController.swift in Sources */,
+				DE6CE85A2A1F060100F11719 /* DetailsLeaguePresenter.swift in Sources */,
+				DE6CE8612A1F08DC00F11719 /* TeamsDetailsViewController.swift in Sources */,
 				DE33EDDE2A1D119200DA2EB2 /* CollectionView2Cell.swift in Sources */,
 				DEDBAD7E2A1EA4C90058F375 /* DetailsTableViewCell.swift in Sources */,
 				DEAAD4732A1917980061CDCF /* SceneDelegate.swift in Sources */,
