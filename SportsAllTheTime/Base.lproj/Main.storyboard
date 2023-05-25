@@ -159,7 +159,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYc-Zd-3FF">
                                                     <rect key="frame" x="5" y="5" width="383" height="80"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="league" translatesAutoresizingMaskIntoConstraints="NO" id="GUx-nN-D5O">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Football100" translatesAutoresizingMaskIntoConstraints="NO" id="GUx-nN-D5O">
                                                             <rect key="frame" x="0.0" y="0.0" width="110" height="80"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="110" id="nLR-UU-eai"/>
@@ -285,7 +285,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="league" translatesAutoresizingMaskIntoConstraints="NO" id="m3e-Tc-xbP">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Football100" translatesAutoresizingMaskIntoConstraints="NO" id="m3e-Tc-xbP">
                                                             <rect key="frame" x="0.0" y="0.0" width="114" height="111"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="114" id="GP7-5e-GbH"/>
@@ -412,9 +412,10 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="league" translatesAutoresizingMaskIntoConstraints="NO" id="hrz-tJ-QkI">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Football100" translatesAutoresizingMaskIntoConstraints="NO" id="hrz-tJ-QkI">
                                                             <rect key="frame" x="0.0" y="0.0" width="114" height="97"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="height" constant="97" id="5V9-jw-RIH"/>
                                                                 <constraint firstAttribute="width" constant="114" id="6lV-vY-FTx"/>
                                                             </constraints>
                                                         </imageView>
@@ -815,8 +816,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Football100" width="564" height="564"/>
         <image name="bunny" width="236" height="419"/>
-        <image name="league" width="564" height="564"/>
         <image name="ronaldo" width="236" height="512"/>
         <image name="sportscourt.fill" catalog="system" width="128" height="83"/>
         <systemColor name="systemBackgroundColor">

@@ -7,5 +7,5 @@
 
 import Foundation
 protocol LeaguesPresenterInterface{
-    func getData()
+    func getData(type:String)
 }

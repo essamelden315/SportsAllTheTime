@@ -27,7 +27,7 @@ class HomeViewController: UICollectionViewController,HomeViewControllerInterface
         myCollectionView.collectionViewLayout = layout
         print("welcome")
         listImgs = ["football.jpeg","basketball.jpeg","tennis.jpeg","cricket.jpeg"]
-        listNames = ["Football","Basketball","Tinnes","Cricket"]
+        listNames = ["Football","Basketball","Tennis","Cricket"]
     }
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

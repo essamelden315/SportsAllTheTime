@@ -21,7 +21,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         myTableView.dataSource = self
         myTableView.delegate = self
         let presenter:LeaguesPresenterInterface = LeaguesPresenter(repo: ConcreteRemote(), view: self)
-        presenter.getData()
+        presenter.getData(type:(leagueType?.lowercased())!)
         isFilterd = false
     }
     func numberOfSections(in tableView: UITableView) -> Int {  return 1 }
@@ -36,7 +36,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
  
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as! LeagueTableViewCell
-        cell.leagueImage.sd_setImage(with: URL(string: league[indexPath.row].league_logo ?? ""), placeholderImage: UIImage(named: "league.jpeg"))
+        cell.leagueImage.sd_setImage(with: URL(string: league[indexPath.row].league_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
         cell.leagueImage.layer.masksToBounds = false
         cell.leagueImage.layer.cornerRadius =  cell.leagueImage.frame.size.width/2
         cell.leagueImage.clipsToBounds = true

@@ -13,8 +13,8 @@ class LeaguesPresenter:LeaguesPresenterInterface{
         self.repo = repo
         self.view = view
     }
-    func getData(){
-        repo.getDataFromApi(type: "football") { result,error in
+    func getData(type:String){
+        repo.getDataFromApi(type: type) { result,error in
             DispatchQueue.main.async {
                 guard let result = result else{
                     self.view.catchError(error: error!)
