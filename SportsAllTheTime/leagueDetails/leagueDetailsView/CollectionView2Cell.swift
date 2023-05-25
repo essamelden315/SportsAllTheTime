@@ -9,4 +9,7 @@ import UIKit
 
 class CollectionView2Cell: UICollectionViewCell {
     
+    @IBOutlet weak var teamsNameLabel: UILabel!
+    
+    @IBOutlet weak var teamsImg: UIImageView!
 }

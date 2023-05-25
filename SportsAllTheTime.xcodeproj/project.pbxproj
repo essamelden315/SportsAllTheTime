@@ -14,6 +14,7 @@
 		DE33EDDC2A1D118500DA2EB2 /* CollectionView1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33EDDB2A1D118500DA2EB2 /* CollectionView1Cell.swift */; };
 		DE33EDDE2A1D119200DA2EB2 /* CollectionView2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33EDDD2A1D119200DA2EB2 /* CollectionView2Cell.swift */; };
 		DE60CCE82A193DE9004F31AE /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60CCE72A193DE9004F31AE /* MyCollectionViewCell.swift */; };
+		DE6CE8572A1EFF0900F11719 /* LeaguesDetailsViewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CE8562A1EFF0900F11719 /* LeaguesDetailsViewControllerInterface.swift */; };
 		DE8368FB2A1B72D2002755F7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8368FA2A1B72D2002755F7 /* HomeViewController.swift */; };
 		DE9EC1A02A1CE234006CAD3D /* HomeViewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9EC19F2A1CE234006CAD3D /* HomeViewControllerInterface.swift */; };
 		DE9EC1A22A1CE249006CAD3D /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9EC1A12A1CE249006CAD3D /* HomePresenter.swift */; };
@@ -65,6 +66,7 @@
 		DE33EDDB2A1D118500DA2EB2 /* CollectionView1Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView1Cell.swift; sourceTree = "<group>"; };
 		DE33EDDD2A1D119200DA2EB2 /* CollectionView2Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView2Cell.swift; sourceTree = "<group>"; };
 		DE60CCE72A193DE9004F31AE /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE6CE8562A1EFF0900F11719 /* LeaguesDetailsViewControllerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesDetailsViewControllerInterface.swift; sourceTree = "<group>"; };
 		DE8368FA2A1B72D2002755F7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DE9EC19F2A1CE234006CAD3D /* HomeViewControllerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerInterface.swift; sourceTree = "<group>"; };
 		DE9EC1A12A1CE249006CAD3D /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				DE33EDDB2A1D118500DA2EB2 /* CollectionView1Cell.swift */,
 				DE33EDDD2A1D119200DA2EB2 /* CollectionView2Cell.swift */,
 				DEDBAD7D2A1EA4C90058F375 /* DetailsTableViewCell.swift */,
+				DE6CE8562A1EFF0900F11719 /* LeaguesDetailsViewControllerInterface.swift */,
 			);
 			path = leagueDetailsView;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE6CE8572A1EFF0900F11719 /* LeaguesDetailsViewControllerInterface.swift in Sources */,
 				DEAAD4752A1917980061CDCF /* ViewController.swift in Sources */,
 				DE9EC1AC2A1CE41F006CAD3D /* LeaguesViewControllerInterface.swift in Sources */,
 				DEAAD47B2A1917980061CDCF /* SportsAllTheTime.xcdatamodeld in Sources */,
