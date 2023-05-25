@@ -8,4 +8,6 @@
 import Foundation
 protocol LeaguesViewControllerInterface{
     func editNavigationBar()
+    func catchError(error:Error)
+    func showData(leagues:[Results])
 }
