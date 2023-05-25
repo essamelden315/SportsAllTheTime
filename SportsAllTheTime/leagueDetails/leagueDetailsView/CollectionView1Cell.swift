@@ -9,4 +9,10 @@ import UIKit
 
 class CollectionView1Cell: UICollectionViewCell {
     
+    @IBOutlet weak var awayTeamLable: UILabel!
+    @IBOutlet weak var homeTeamLabel: UILabel!
+    @IBOutlet weak var secondTeamImg: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var homeTeamImg: UIImageView!
 }
