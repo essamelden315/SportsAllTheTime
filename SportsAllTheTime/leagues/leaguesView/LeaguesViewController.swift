@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate ,LeaguesViewControllerInterface{
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var mySearchBar: UISearchBar!
@@ -21,7 +21,10 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         mySearchBar.delegate = self
         myTableView.dataSource = self
         myTableView.delegate = self
-        listImgs = ["football.jpeg","giraf.jpeg","bunny.jpeg","mario.jpeg"]
+        listImgs = ["https://i.pinimg.com/236x/b9/2e/35/b92e359d679e90497e2eee2b1346d9ec.jpg",
+                    "https://i.pinimg.com/236x/5a/4e/8d/5a4e8d4d23fea497145b79b51559afd5.jpg",
+                    "https://i.pinimg.com/236x/d5/b3/ff/d5b3ff58b2923685e42de424335cefce.jpg",
+                    "https://i.pinimg.com/236x/65/2b/db/652bdbfe4746a4a622404f0c3637dab6.jpg"]
         listNames = ["Football","Basketball","Tinnes","Cricket"]
         isFilterd = false
     }
@@ -37,7 +40,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
  
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as! LeagueTableViewCell
-        cell.leagueImage.image = UIImage(named: "league.jpeg")
+        cell.leagueImage.sd_setImage(with: URL(string: listImgs[indexPath.row]), placeholderImage: UIImage(named: "league.jpeg"))
         cell.leagueImage.layer.masksToBounds = false
         cell.leagueImage.layer.cornerRadius =  cell.leagueImage.frame.size.width/2
         cell.leagueImage.clipsToBounds = true

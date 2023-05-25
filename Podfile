@@ -7,6 +7,7 @@ target 'SportsAllTheTime' do
 
   # Pods for SportsAllTheTime
   pod 'lottie-ios'
+  pod 'SDWebImage'
   target 'SportsAllTheTimeTests' do
     inherit! :search_paths
     # Pods for testing
