@@ -6,46 +6,43 @@
 //
 
 import UIKit
-
+import SDWebImage
 class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource,LeaguesDetailsViewControllerInterface {
+    
     @IBOutlet weak var secondColletionView: UICollectionView!
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var firstCollectionView: UICollectionView!
-    var listImgs = [String]()
-    var listNames = [String]()
+    var upcomingList = [Events]()
+    var latestList = [Events]()
+    var leagueType:String?
+    var leagueId:Int?
     var teams = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         editNavigationBar()
-        let firstLayout = UICollectionViewCompositionalLayout { [self] sectionIndex, enviroment in
-            return upComingEvents()   
-        }
-        let secondLayout = UICollectionViewCompositionalLayout { [self] sectionIndex, enviroment in
-            return showTeamsList()
-        }
-        firstCollectionView.setCollectionViewLayout(firstLayout, animated: true)
-        secondColletionView.setCollectionViewLayout(secondLayout, animated: true)
-        listImgs = ["football.jpeg","giraf.jpeg","bunny.jpeg","mario.jpeg"]
-        listNames = ["Real Madrid","Bercelona","Manchester United","Elnaser"]
+        setSectionLayout()
+        let presenter:DetailsLeaguePresenterInterface = DetailsLeaguePresenter(repo: Repository.instance(remoteObj: ConcreteRemote()), view: self)
+        presenter.getUpComingEvents(type: (leagueType?.lowercased())!, from: "2023-05-26", to: "2023-06-01", leagueID: leagueId!)
+        presenter.getLatestEvents(type: (leagueType?.lowercased())!, from: "2023-05-11", to: "2023-05-25", leagueID: leagueId!)
+        
         teams=["football.jpeg","giraf.jpeg","bunny.jpeg","mario.jpeg","football.jpeg","giraf.jpeg","bunny.jpeg","mario.jpeg","football.jpeg","giraf.jpeg","bunny.jpeg","mario.jpeg"]
-    }
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == firstCollectionView){
-            return listNames.count
+            return upcomingList.count
         }
-        return teams.count
+        return latestList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if(collectionView == firstCollectionView){
             let cell = firstCollectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath)as! CollectionView1Cell
-            cell.homeTeamImg.image = UIImage(named: listImgs[indexPath.row])
-            cell.homeTeamLabel.text = listNames[indexPath.row]
-            cell.timeLabel.text = "22:00"
-            cell.dateLabel.text = "25/3/2023"
+            cell.homeTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            cell.homeTeamLabel.text = upcomingList[indexPath.row].event_home_team
+            cell.timeLabel.text = upcomingList[indexPath.row].event_time
+            cell.dateLabel.text = upcomingList[indexPath.row].event_date
+            cell.secondTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            cell.awayTeamLable.text = upcomingList[indexPath.row].event_away_team
             return cell
         }
         let cell = secondColletionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath)as! CollectionView2Cell
@@ -75,16 +72,22 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
 }
 
 extension LeaguesDetailsViewController{
-    func upComingEvents()-> NSCollectionLayoutSection {
+    func setSectionLayout(){
+        let firstLayout = UICollectionViewCompositionalLayout { [self] sectionIndex, enviroment in
+            return upComingEventsCollectionView()
+        }
+        let secondLayout = UICollectionViewCompositionalLayout { [self] sectionIndex, enviroment in
+            return showTeamsListCollectionView()
+        }
+        firstCollectionView.setCollectionViewLayout(firstLayout, animated: true)
+        secondColletionView.setCollectionViewLayout(secondLayout, animated: true)
+    }
+    func upComingEventsCollectionView()-> NSCollectionLayoutSection {
            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
            let item = NSCollectionLayoutItem(layoutSize: itemSize)
            let groupSize = NSCollectionLayoutSize(widthDimension:.fractionalWidth(1), heightDimension: .absolute(170))
            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-//            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
-//             , bottom: 0, trailing: 15)
            let section = NSCollectionLayoutSection(group: group)
-//            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15
-//             , bottom: 10, trailing: 0)
        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
             items.forEach { item in
             let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
@@ -97,7 +100,7 @@ extension LeaguesDetailsViewController{
            section.orthogonalScrollingBehavior = .continuous
            return section
        }
-    func showTeamsList()-> NSCollectionLayoutSection {
+    func showTeamsListCollectionView()-> NSCollectionLayoutSection {
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
             , heightDimension: .fractionalHeight(1))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -120,5 +123,16 @@ extension LeaguesDetailsViewController{
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         let font = UIFont(name: "Helvetica-Bold", size: 22)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font!]
+    }
+    func catchError(error:Error){
+        print(error.localizedDescription)
+    }
+    func showDataOfUpComingEvents(coming:[Events]){
+        upcomingList = coming
+        firstCollectionView.reloadData()
+    }
+    func showDataOfLatestEvents(latest:[Events]){
+        latestList = latest
+        secondColletionView.reloadData()
     }
 }

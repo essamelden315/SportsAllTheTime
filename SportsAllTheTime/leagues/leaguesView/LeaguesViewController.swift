@@ -20,7 +20,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         mySearchBar.delegate = self
         myTableView.dataSource = self
         myTableView.delegate = self
-        let presenter:LeaguesPresenterInterface = LeaguesPresenter(repo: ConcreteRemote(), view: self)
+        let presenter:LeaguesPresenterInterface = LeaguesPresenter(repo: Repository.instance(remoteObj:ConcreteRemote()), view: self)
         presenter.getData(type:(leagueType?.lowercased())!)
         isFilterd = false
     }
@@ -50,6 +50,8 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let leagueDetails = self.storyboard?.instantiateViewController(withIdentifier: "details") as! LeaguesDetailsViewController
+        leagueDetails.leagueType = self.leagueType
+        leagueDetails.leagueId = league[indexPath.row].league_key
         self.navigationController?.pushViewController(leagueDetails, animated: true)
         if(isFilterd!){
             print(filteredData[indexPath.row])

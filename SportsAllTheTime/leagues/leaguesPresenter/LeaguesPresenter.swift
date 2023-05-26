@@ -7,14 +7,14 @@
 
 import Foundation
 class LeaguesPresenter:LeaguesPresenterInterface{
-    let repo : RemoteDataSource
+    let repo : RepositoryInterface
     let view : LeaguesViewControllerInterface
-    init(repo: ConcreteRemote, view: LeaguesViewControllerInterface) {
+    init(repo: Repository, view: LeaguesViewControllerInterface) {
         self.repo = repo
         self.view = view
     }
     func getData(type:String){
-        repo.getDataFromApi(type: type) { result,error in
+        repo.getLeaguesData(type: type) { result,error in
             DispatchQueue.main.async {
                 guard let result = result else{
                     self.view.catchError(error: error!)
@@ -24,15 +24,5 @@ class LeaguesPresenter:LeaguesPresenterInterface{
             }
         }
     }
-//    func getData() {
-//        repo.getDataFromApi { result in
-//            DispatchQueue.main.async {
-//                guard let result = result else{
-//                    print("error")
-//                    return
-//                }
-//                self.view.showData(employee: result)
-//            }
-//        }
-//    }
+
 }

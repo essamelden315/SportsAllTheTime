@@ -7,5 +7,6 @@
 
 import Foundation
 protocol RemoteDataSource{
-    func getDataFromApi(type:String,complitionHandler : @escaping ([Results]?,Error?) -> Void )
+    func getLeaguesData(type:String,complitionHandler : @escaping ([Results]?,Error?) -> Void )
+    func getUpComingEvents(type:String,from:String,to:String,leagueID:Int,complitionHandler : @escaping ([Events]?,Error?) -> Void )
 }
