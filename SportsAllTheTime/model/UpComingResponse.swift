@@ -17,4 +17,7 @@ class Events:Decodable{
     var event_away_team:String?
     var home_team_logo:String?
     var away_team_logo:String?
+    var event_final_result:String?
+    var event_ft_result:String?
+    var event_penalty_result:String?
 }

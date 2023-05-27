@@ -15,4 +15,5 @@ protocol LeaguesDetailsViewControllerInterface{
     func showDataOfUpComingEvents(coming:[Events])
     func showDataOfLatestEvents(latest:[Events])
     func editNavigationBar()
+    func showTeams(teams:[Teams])
 }

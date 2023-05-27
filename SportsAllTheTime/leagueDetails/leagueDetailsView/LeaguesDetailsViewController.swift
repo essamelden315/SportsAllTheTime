@@ -22,10 +22,11 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         editNavigationBar()
         setSectionLayout()
         let presenter:DetailsLeaguePresenterInterface = DetailsLeaguePresenter(repo: Repository.instance(remoteObj: ConcreteRemote()), view: self)
+        //calling for upcoming events
         presenter.getUpComingEvents(type: (leagueType?.lowercased())!, from: "2023-05-26", to: "2023-06-01", leagueID: leagueId!)
-        presenter.getLatestEvents(type: (leagueType?.lowercased())!, from: "2023-05-11", to: "2023-05-25", leagueID: leagueId!)
+        //calling for leatest event
+        presenter.getLatestEvents(type: (leagueType?.lowercased())!, from: "2023-05-20", to: "2023-05-25", leagueID: leagueId!)
         
-        teams=["football.jpeg","giraf.jpeg","bunny.jpeg","mario.jpeg","football.jpeg","giraf.jpeg","bunny.jpeg","mario.jpeg","football.jpeg","giraf.jpeg","bunny.jpeg","mario.jpeg"]
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == firstCollectionView){
@@ -34,7 +35,9 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         return latestList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) ->
+    UICollectionViewCell {
+        //fisrt collection view (Upcoming events)
         if(collectionView == firstCollectionView){
             let cell = firstCollectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath)as! CollectionView1Cell
             cell.homeTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
@@ -45,11 +48,13 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
             cell.awayTeamLable.text = upcomingList[indexPath.row].event_away_team
             return cell
         }
+        //second collection view (Teams)
         let cell = secondColletionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath)as! CollectionView2Cell
-        cell.teamsImg.image = UIImage(named:teams[indexPath.row])
-        cell.teamsNameLabel.text = teams[indexPath.row]
+        cell.teamsImg.image = UIImage(named:teams[indexPath.row])//
+        cell.teamsNameLabel.text = teams[indexPath.row]//
         return cell
     }
+    // did select row for teams collection view
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == secondColletionView){
             let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
@@ -58,20 +63,26 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
             self.navigationController?.pushViewController(teamDetails, animated: true)
         }
     }
+    //table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return latestList.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)as! DetailsTableViewCell
+        cell.dateLabel.text = latestList[indexPath.row].event_date
+        cell.timeLabel.text = latestList[indexPath.row].event_time
+        cell.homeTeamName.text = latestList[indexPath.row].event_home_team
+        cell.awayTeamName.text = latestList[indexPath.row].event_away_team
+        cell.homeTeamImage.sd_setImage(with: URL(string: latestList[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+        cell.awayTeamImg.sd_setImage(with: URL(string: latestList[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+        cell.resultLabel.text = latestList[indexPath.row].event_final_result
+        cell.penalty.text = latestList[indexPath.row].event_penalty_result! as String
         return cell
     }
-      
-    
-  
 }
-
+//extension class for section rendering in collection view
 extension LeaguesDetailsViewController{
+    //general method to set the section layout
     func setSectionLayout(){
         let firstLayout = UICollectionViewCompositionalLayout { [self] sectionIndex, enviroment in
             return upComingEventsCollectionView()
@@ -82,21 +93,23 @@ extension LeaguesDetailsViewController{
         firstCollectionView.setCollectionViewLayout(firstLayout, animated: true)
         secondColletionView.setCollectionViewLayout(secondLayout, animated: true)
     }
+    //section layout for upComing events
     func upComingEventsCollectionView()-> NSCollectionLayoutSection {
            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
            let item = NSCollectionLayoutItem(layoutSize: itemSize)
            let groupSize = NSCollectionLayoutSize(widthDimension:.fractionalWidth(1), heightDimension: .absolute(170))
            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
            let section = NSCollectionLayoutSection(group: group)
-       section.visibleItemsInvalidationHandler = { (items, offset, environment) in
-            items.forEach { item in
-            let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
-            let minScale: CGFloat = 0.8
-            let maxScale: CGFloat = 1.0
-            let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
-            item.transform = CGAffineTransform(scaleX: scale, y: scale)
+           //move animation
+           section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+                items.forEach { item in
+                    let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+                    let minScale: CGFloat = 0.8
+                    let maxScale: CGFloat = 1.0
+                    let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                    item.transform = CGAffineTransform(scaleX: scale, y: scale)
+                    }
             }
-       }
            section.orthogonalScrollingBehavior = .continuous
            return section
        }
@@ -104,19 +117,12 @@ extension LeaguesDetailsViewController{
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
             , heightDimension: .fractionalHeight(1))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3)
-                                               , heightDimension: .fractionalHeight(1))
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize
-            , subitems: [item])
-            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
-            , bottom: 0, trailing: 15)
-            
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1))
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15
-            , bottom: 10, trailing: 0)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 0)
             section.orthogonalScrollingBehavior = .continuous
-            
             return section
         }
     func editNavigationBar(){
@@ -133,6 +139,10 @@ extension LeaguesDetailsViewController{
     }
     func showDataOfLatestEvents(latest:[Events]){
         latestList = latest
-        secondColletionView.reloadData()
+        myTableView.reloadData()
+    }
+    func showTeams(teams:[Teams]){
+        self.teams = teams
+        myTableView.reloadData()
     }
 }
