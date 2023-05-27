@@ -59,7 +59,11 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == secondColletionView){
             let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
-           
+            teamDetails.players = teams[indexPath.row].players
+            teamDetails.coach = teams[indexPath.row].coaches
+            teamDetails.logo = teams[indexPath.row].team_logo
+            teamDetails.name = teams[indexPath.row].team_name
+            
             self.navigationController?.pushViewController(teamDetails, animated: true)
         }
     }
@@ -76,7 +80,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         cell.homeTeamImage.sd_setImage(with: URL(string: latestList[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
         cell.awayTeamImg.sd_setImage(with: URL(string: latestList[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
         cell.resultLabel.text = latestList[indexPath.row].event_final_result
-        cell.penalty.text = latestList[indexPath.row].event_penalty_result! as String
+        cell.penalty.text = (latestList[indexPath.row].event_penalty_result ?? "") as String
         return cell
     }
 }
