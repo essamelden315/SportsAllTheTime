@@ -18,7 +18,7 @@ class ConcreteRemote:RemoteDataSource{
                    return
                }
                do{
-                   let result = try JSONDecoder().decode(MyResponse.self , from: data)
+                   let result = try JSONDecoder().decode(LeagueResponse.self , from: data)
                    complitionHandler(result.result,nil)
                }catch{
                    print("error happend")
@@ -39,6 +39,26 @@ class ConcreteRemote:RemoteDataSource{
             }
             do{
                 let result = try JSONDecoder().decode(UpComingResponse.self , from: data)
+                complitionHandler(result.result,nil)
+            }catch{
+                print("error happend")
+                complitionHandler(nil,error)
+            }
+        })
+        task.resume()
+    }
+    func getLeagueTeams(type:String,leagueID:Int,complitionHandler : @escaping ([Team]?,Error?) -> Void ) {
+        let url = URL(string: "https://apiv2.allsportsapi.com/\(type)/?&met=Teams&leagueId=\(leagueID)&APIkey=60a5610cf9f3a1e045e06a5da8c9d7361e0a8c04a3c321c9684d32d7e3db27c6")
+        let request = URLRequest(url: url!)
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        let task = session.dataTask(with: request, completionHandler: {
+            (data,response,error)  in
+            guard let data = data else{
+                complitionHandler(nil,error!)
+                return
+            }
+            do{
+                let result = try JSONDecoder().decode(TeamsResponse.self , from: data)
                 complitionHandler(result.result,nil)
             }catch{
                 print("error happend")

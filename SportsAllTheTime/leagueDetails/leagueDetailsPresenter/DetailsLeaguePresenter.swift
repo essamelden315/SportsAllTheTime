@@ -35,4 +35,15 @@ class DetailsLeaguePresenter:DetailsLeaguePresenterInterface{
             }
         }
     }
+    func getLeagueTeams(type: String, leagueID:Int){
+        repo.getLeagueTeams(type: type, leagueID: leagueID) { result, error in
+            DispatchQueue.main.async {
+                guard let result = result else{
+                    self.view.catchError(error: error!)
+                    return
+                }
+                self.view.showTeams(teams: result) 
+            }
+        }
+    }
 }

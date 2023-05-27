@@ -7,7 +7,7 @@
 
 import Foundation
 class Repository:RepositoryInterface{
- 
+  
     private var remote : RemoteDataSource
     private init(remote: RemoteDataSource) {
         self.remote = remote
@@ -24,5 +24,7 @@ class Repository:RepositoryInterface{
         remote.getUpComingEvents(type: type, from: from, to: to, leagueID: leagueID, complitionHandler: complitionHandler)
     }
     
-    
+    func getLeagueTeams(type: String, leagueID: Int, complitionHandler: @escaping ([Team]?, Error?) -> Void) {
+        remote.getLeagueTeams(type: type, leagueID: leagueID, complitionHandler: complitionHandler)
+    }
 }

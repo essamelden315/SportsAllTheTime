@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class MyResponse:Decodable{
+class LeagueResponse:Decodable{
     var success:Int?
     var result : [Results]
 }

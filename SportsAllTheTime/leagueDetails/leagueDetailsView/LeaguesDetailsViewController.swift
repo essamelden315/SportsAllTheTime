@@ -16,7 +16,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     var latestList = [Events]()
     var leagueType:String?
     var leagueId:Int?
-    var teams = [String]()
+    var teams = [Team]()
     override func viewDidLoad() {
         super.viewDidLoad()
         editNavigationBar()
@@ -26,13 +26,14 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         presenter.getUpComingEvents(type: (leagueType?.lowercased())!, from: "2023-05-26", to: "2023-06-01", leagueID: leagueId!)
         //calling for leatest event
         presenter.getLatestEvents(type: (leagueType?.lowercased())!, from: "2023-05-20", to: "2023-05-25", leagueID: leagueId!)
+        presenter.getLeagueTeams(type: (leagueType?.lowercased())!, leagueID: leagueId!)
         
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == firstCollectionView){
             return upcomingList.count
         }
-        return latestList.count
+        return teams.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) ->
@@ -50,16 +51,15 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         }
         //second collection view (Teams)
         let cell = secondColletionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath)as! CollectionView2Cell
-        cell.teamsImg.image = UIImage(named:teams[indexPath.row])//
-        cell.teamsNameLabel.text = teams[indexPath.row]//
+        cell.teamsImg.sd_setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""),placeholderImage: UIImage(named: "teamlogo.jpeg"))
+        cell.teamsNameLabel.text = teams[indexPath.row].team_name
         return cell
     }
     // did select row for teams collection view
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == secondColletionView){
             let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
-            teamDetails.logo = teams[indexPath.row]
-            teamDetails.name = teams[indexPath.row]
+           
             self.navigationController?.pushViewController(teamDetails, animated: true)
         }
     }
@@ -141,8 +141,9 @@ extension LeaguesDetailsViewController{
         latestList = latest
         myTableView.reloadData()
     }
-    func showTeams(teams:[Teams]){
+    func showTeams(teams:[Team]){
         self.teams = teams
-        myTableView.reloadData()
+        print("team count = \(self.teams.count)")
+        secondColletionView.reloadData()
     }
 }
