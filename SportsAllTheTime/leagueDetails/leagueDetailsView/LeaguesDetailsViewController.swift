@@ -23,9 +23,9 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         setSectionLayout()
         let presenter:DetailsLeaguePresenterInterface = DetailsLeaguePresenter(repo: Repository.instance(remoteObj: ConcreteRemote()), view: self)
         //calling for upcoming events
-        presenter.getUpComingEvents(type: (leagueType?.lowercased())!, from: "2023-05-26", to: "2023-06-01", leagueID: leagueId!)
+        presenter.getUpComingEvents(type: (leagueType?.lowercased())!, from: "2023-05-27", to: "2023-06-30", leagueID: leagueId!)
         //calling for leatest event
-        presenter.getLatestEvents(type: (leagueType?.lowercased())!, from: "2023-05-20", to: "2023-05-25", leagueID: leagueId!)
+        presenter.getLatestEvents(type: (leagueType?.lowercased())!, from: "2023-03-01", to: "2023-05-28", leagueID: leagueId!)
         presenter.getLeagueTeams(type: (leagueType?.lowercased())!, leagueID: leagueId!)
         
     }
@@ -41,12 +41,17 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         //fisrt collection view (Upcoming events)
         if(collectionView == firstCollectionView){
             let cell = firstCollectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath)as! CollectionView1Cell
-            cell.homeTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
-            cell.homeTeamLabel.text = upcomingList[indexPath.row].event_home_team
             cell.timeLabel.text = upcomingList[indexPath.row].event_time
             cell.dateLabel.text = upcomingList[indexPath.row].event_date
-            cell.secondTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
-            cell.awayTeamLable.text = upcomingList[indexPath.row].event_away_team
+            if leagueType == "Basketball"{
+                setBasketBallLayoutData(collectionCell: cell,indexPath: indexPath.row)
+            }else if leagueType == "Football"{
+                setFootBallLayoutData(collectionCell: cell,indexPath: indexPath.row)
+            }else if leagueType == "Tennis"{
+                setTennisLayoutData(collectionCell: cell, indexPath: indexPath.row)
+            }else if leagueType == "Cricket"{
+                setCricketLayoutData(collectionCell: cell, indexPath: indexPath.row)
+            }
             return cell
         }
         //second collection view (Teams)
@@ -61,9 +66,8 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
             let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
             teamDetails.players = teams[indexPath.row].players
             teamDetails.coach = teams[indexPath.row].coaches
-            teamDetails.logo = teams[indexPath.row].team_logo
+            teamDetails.logo = teams[indexPath.row].team_logo 
             teamDetails.name = teams[indexPath.row].team_name
-            
             self.navigationController?.pushViewController(teamDetails, animated: true)
         }
     }
@@ -75,12 +79,15 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)as! DetailsTableViewCell
         cell.dateLabel.text = latestList[indexPath.row].event_date
         cell.timeLabel.text = latestList[indexPath.row].event_time
-        cell.homeTeamName.text = latestList[indexPath.row].event_home_team
-        cell.awayTeamName.text = latestList[indexPath.row].event_away_team
-        cell.homeTeamImage.sd_setImage(with: URL(string: latestList[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
-        cell.awayTeamImg.sd_setImage(with: URL(string: latestList[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
-        cell.resultLabel.text = latestList[indexPath.row].event_final_result
-        cell.penalty.text = (latestList[indexPath.row].event_penalty_result ?? "") as String
+        if leagueType == "Basketball"{
+            setBasketBallLayoutData(tableCell: cell,indexPath: indexPath.row)
+        }else if leagueType == "Football"{
+            setFootBallLayoutData(tableCell: cell,indexPath: indexPath.row)
+        }else if leagueType == "Tennis"{
+            setTennisLayoutData(tableCell: cell, indexPath: indexPath.row)
+        }else if leagueType == "Cricket"{
+            setCricketLayoutData(tableCell: cell, indexPath: indexPath.row)
+        }
         return cell
     }
 }
@@ -99,41 +106,43 @@ extension LeaguesDetailsViewController{
     }
     //section layout for upComing events
     func upComingEventsCollectionView()-> NSCollectionLayoutSection {
-           let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-           let item = NSCollectionLayoutItem(layoutSize: itemSize)
-           let groupSize = NSCollectionLayoutSize(widthDimension:.fractionalWidth(1), heightDimension: .absolute(170))
-           let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-           let section = NSCollectionLayoutSection(group: group)
-           //move animation
-           section.visibleItemsInvalidationHandler = { (items, offset, environment) in
-                items.forEach { item in
-                    let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
-                    let minScale: CGFloat = 0.8
-                    let maxScale: CGFloat = 1.0
-                    let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
-                    item.transform = CGAffineTransform(scaleX: scale, y: scale)
-                    }
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension:.fractionalWidth(1), heightDimension: .absolute(170))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        //move animation
+        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+            items.forEach { item in
+                let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+                let minScale: CGFloat = 0.8
+                let maxScale: CGFloat = 1.0
+                let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                item.transform = CGAffineTransform(scaleX: scale, y: scale)
             }
-           section.orthogonalScrollingBehavior = .continuous
-           return section
-       }
-    func showTeamsListCollectionView()-> NSCollectionLayoutSection {
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
-            , heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1))
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 0)
-            section.orthogonalScrollingBehavior = .continuous
-            return section
         }
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }
+    func showTeamsListCollectionView()-> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
+                                              , heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 0)
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }
     func editNavigationBar(){
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         let font = UIFont(name: "Helvetica-Bold", size: 22)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font!]
     }
+    
+    
     func catchError(error:Error){
         print(error.localizedDescription)
     }
@@ -147,7 +156,68 @@ extension LeaguesDetailsViewController{
     }
     func showTeams(teams:[Team]){
         self.teams = teams
-        print("team count = \(self.teams.count)")
         secondColletionView.reloadData()
+    }
+}
+extension LeaguesDetailsViewController{
+    
+    func setBasketBallLayoutData(tableCell: DetailsTableViewCell? = nil,collectionCell: CollectionView1Cell? = nil,indexPath:Int){
+        if let cell = tableCell{
+            cell.homeTeamImage.sd_setImage(with: URL(string: latestList[indexPath].event_home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            cell.awayTeamImg.sd_setImage(with: URL(string: latestList[indexPath].event_away_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            cell.homeTeamName.text = latestList[indexPath].event_home_team
+            cell.awayTeamName.text = latestList[indexPath].event_away_team
+            cell.resultLabel.text = latestList[indexPath].event_final_result
+        }else{
+            collectionCell!.homeTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath].event_home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            collectionCell!.secondTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath].event_away_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            collectionCell!.homeTeamLabel.text = upcomingList[indexPath].event_home_team
+            collectionCell!.awayTeamLable.text = upcomingList[indexPath].event_away_team
+        }
+    }
+    func setTennisLayoutData(tableCell: DetailsTableViewCell? = nil,collectionCell: CollectionView1Cell? = nil,indexPath:Int){
+        if let cell = tableCell{
+            cell.homeTeamImage.sd_setImage(with: URL(string:latestList[indexPath].event_first_player_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            cell.awayTeamImg.sd_setImage(with: URL(string: latestList[indexPath].event_second_player_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            cell.homeTeamName.text = latestList[indexPath].event_first_player
+            cell.awayTeamName.text = latestList[indexPath].event_second_player
+            cell.resultLabel.text = latestList[indexPath].event_final_result
+        }else{
+            collectionCell!.homeTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath].event_first_player_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            collectionCell!.secondTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath].event_second_player_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            collectionCell!.homeTeamLabel.text = upcomingList[indexPath].event_first_player
+            collectionCell!.awayTeamLable.text = upcomingList[indexPath].event_second_player
+        }
+    }
+    
+    func setCricketLayoutData(tableCell: DetailsTableViewCell? = nil,collectionCell: CollectionView1Cell? = nil,indexPath:Int){
+        if let cell = tableCell{
+            cell.homeTeamImage.sd_setImage(with: URL(string:latestList[indexPath].event_home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            cell.awayTeamImg.sd_setImage(with: URL(string: latestList[indexPath].event_away_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            cell.homeTeamName.text = latestList[indexPath].event_home_team
+            cell.awayTeamName.text = latestList[indexPath].event_away_team
+            cell.resultLabel.text = latestList[indexPath].event_home_final_result
+            cell.dateLabel.text = latestList[indexPath].event_date_start
+        }else{
+            collectionCell!.homeTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath].event_home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            collectionCell!.secondTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath].event_away_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            collectionCell!.homeTeamLabel.text = upcomingList[indexPath].event_first_player
+            collectionCell!.awayTeamLable.text = upcomingList[indexPath].event_second_player
+            collectionCell!.dateLabel.text = upcomingList[indexPath].event_date_start
+        }
+    }
+    func setFootBallLayoutData(tableCell: DetailsTableViewCell? = nil,collectionCell: CollectionView1Cell? = nil,indexPath:Int){
+        if let cell = tableCell{
+            cell.homeTeamImage.sd_setImage(with: URL(string: latestList[indexPath].home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            cell.awayTeamImg.sd_setImage(with: URL(string: latestList[indexPath].away_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            cell.homeTeamName.text = latestList[indexPath].event_home_team
+            cell.awayTeamName.text = latestList[indexPath].event_away_team
+            cell.resultLabel.text = latestList[indexPath].event_final_result
+        }else{
+            collectionCell!.homeTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath].home_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            collectionCell!.secondTeamImg.sd_setImage(with: URL(string: upcomingList[indexPath].away_team_logo ?? ""), placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
+            collectionCell!.homeTeamLabel.text = upcomingList[indexPath].event_home_team
+            collectionCell!.awayTeamLable.text = upcomingList[indexPath].event_away_team
+        }
     }
 }

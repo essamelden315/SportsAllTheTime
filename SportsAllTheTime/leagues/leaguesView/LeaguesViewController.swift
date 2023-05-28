@@ -13,7 +13,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
     var leagueType:String?
     var league = [Results]()
     var isFilterd:Bool?
-    var filteredData:[String]!
+    var filteredData:[Results]!
     override func viewDidLoad() {
         super.viewDidLoad()
         editNavigationBar()
@@ -24,7 +24,9 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         presenter.getData(type:(leagueType?.lowercased())!)
         isFilterd = false
     }
-    func numberOfSections(in tableView: UITableView) -> Int {  return 1 }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(isFilterd!){
@@ -41,23 +43,24 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         cell.leagueImage.layer.cornerRadius =  cell.leagueImage.frame.size.width/2
         cell.leagueImage.clipsToBounds = true
         if(isFilterd!){
-            cell.leagueLabel?.text = filteredData[indexPath.row]
+            cell.leagueLabel?.text = filteredData[indexPath.row].league_name
+            cell.leagueImage.sd_setImage(with: URL(string: filteredData[indexPath.row].league_logo ?? ""),placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
         }else{
             cell.leagueLabel?.text = league[indexPath.row].league_name
+            cell.leagueImage.sd_setImage(with: URL(string: league[indexPath.row].league_logo ?? ""),placeholderImage: UIImage(named: "\(leagueType! as String)100.jpeg"))
         }
         
         return cell
    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let leagueDetails = self.storyboard?.instantiateViewController(withIdentifier: "details") as! LeaguesDetailsViewController
-        leagueDetails.leagueType = self.leagueType
-        leagueDetails.leagueId = league[indexPath.row].league_key
-        self.navigationController?.pushViewController(leagueDetails, animated: true)
+        leagueDetails.leagueType = self.leagueType      
         if(isFilterd!){
-            print(filteredData[indexPath.row])
+            leagueDetails.leagueId = filteredData[indexPath.row].league_key
         }else{
-            print(league[indexPath.row])
+            leagueDetails.leagueId = league[indexPath.row].league_key
         }
+        self.navigationController?.pushViewController(leagueDetails, animated: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -65,10 +68,10 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
             isFilterd = false;
         }else{
             isFilterd = true;
-            filteredData = [String]()
+            filteredData = [Results]()
             for word in league {
                 if(word.league_name!.contains(searchText)){
-                    filteredData.append(word.league_name!)
+                    filteredData.append(word)
                 }
             }
         }

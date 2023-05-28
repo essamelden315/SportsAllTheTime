@@ -15,8 +15,8 @@ class Team:Decodable{
     var team_key : Int?
     var team_name : String?
     var team_logo : String?
-    var players : [Player]
-    var coaches : [Coach]
+    var players : [Player]?
+    var coaches : [Coach]?
 }
 class Player:Decodable{
     var player_key : Int?
@@ -27,5 +27,6 @@ class Player:Decodable{
     var player_image : String?
 }
 class Coach:Decodable{
-    var coach_name : String
+    var coach_name : String?
+    
 }

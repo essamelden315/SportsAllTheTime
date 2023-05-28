@@ -18,7 +18,12 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         teamName.text = name!
-        teamImage.sd_setImage(with: URL(string: logo!))
+        if let photo = logo {
+            teamImage.sd_setImage(with: URL(string: photo))
+        }else{
+            teamImage.image = UIImage(named: "teamlogo.jpeg")
+        }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -27,9 +32,9 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return coach!.count
+            return coach?.count ?? 0
         default:
-            return players!.count
+            return players?.count ?? 0
         }
         
     }
