@@ -21,7 +21,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         super.viewDidLoad()
         editNavigationBar()
         setSectionLayout()
-        let presenter:DetailsLeaguePresenterInterface = DetailsLeaguePresenter(repo: Repository.instance(remoteObj: ConcreteRemote()), view: self)
+        let presenter:DetailsLeaguePresenterInterface = DetailsLeaguePresenter(repo: Repository.instance(remoteObj: ConcreteRemote(),localObj: DataBase()), view: self)
         //calling for upcoming events
         presenter.getUpComingEvents(type: (leagueType?.lowercased())!, from: "2023-05-27", to: "2023-06-30", leagueID: leagueId!)
         //calling for leatest event

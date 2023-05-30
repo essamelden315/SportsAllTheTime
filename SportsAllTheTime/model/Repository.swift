@@ -7,13 +7,14 @@
 
 import Foundation
 class Repository:RepositoryInterface{
-  
     private var remote : RemoteDataSource
-    private init(remote: RemoteDataSource) {
+    private var local : LocalDataSource
+    private init(remote: RemoteDataSource,local:LocalDataSource) {
         self.remote = remote
+        self.local = local
     }
-    static func instance(remoteObj:RemoteDataSource) -> Repository{
-        let repo = Repository(remote: remoteObj)
+    static func instance(remoteObj:RemoteDataSource,localObj:LocalDataSource) -> Repository{
+        let repo = Repository(remote: remoteObj,local: localObj)
         return repo
     }
     func getLeaguesData(type: String, complitionHandler: @escaping ([Results]?, Error?) -> Void) {
@@ -26,5 +27,12 @@ class Repository:RepositoryInterface{
     
     func getLeagueTeams(type: String, leagueID: Int,teamId:String ,complitionHandler: @escaping ([Team]?, Error?) -> Void) {
         remote.getLeagueTeams(type: type, leagueID: leagueID,teamId: teamId, complitionHandler: complitionHandler)
+    }
+    func addToFavorite(team: Team, leagueType: String) {
+        local.addToFavorite(team: team, leagueType: leagueType)
+    }
+    
+    func getUserFavorites() -> [FavoritesData] {
+        return local.getUserFavorites()
     }
 }

@@ -7,13 +7,14 @@
 
 import UIKit
 import SDWebImage
-class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,TeamsDetailsViewControllerInterface {
   @IBOutlet weak private var teamName: UILabel!
   @IBOutlet weak private var teamImage: UIImageView!
   @IBOutlet weak private var myTableView: UITableView!
     var team:Team?
     var leagueType:String?
     var isFavorite = false
+    var presenter : TeamDetailsPresenterInterface?
     override func viewDidLoad() {
         super.viewDidLoad()
         teamName.text = team?.team_name!
@@ -22,7 +23,7 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
         }else{
             teamImage.image = UIImage(named: "teamlogo.jpeg")
         }
-        
+        presenter = TeamDetailsPresenter(repo: Repository.instance(remoteObj: ConcreteRemote(), localObj: DataBase()), view: self)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,8 +67,7 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
             sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             sender.tintColor = UIColor.red
             isFavorite = true
-            
-            
+            presenter?.addToFav(team: team!, leagueType: leagueType!)
         }
         
     }

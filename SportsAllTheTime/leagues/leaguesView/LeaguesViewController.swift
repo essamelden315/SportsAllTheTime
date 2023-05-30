@@ -20,7 +20,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         mySearchBar.delegate = self
         myTableView.dataSource = self
         myTableView.delegate = self
-        let presenter:LeaguesPresenterInterface = LeaguesPresenter(repo: Repository.instance(remoteObj:ConcreteRemote()), view: self)
+        let presenter:LeaguesPresenterInterface = LeaguesPresenter(repo: Repository.instance(remoteObj:ConcreteRemote(),localObj: DataBase()), view: self)
         presenter.getData(type:(leagueType?.lowercased())!)
         isFilterd = false
     }

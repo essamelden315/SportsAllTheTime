@@ -9,7 +9,7 @@ import Foundation
 import SQLite3
 import UIKit
 import CoreData
-class DataBase{
+class DataBase:LocalDataSource{
     let context: NSManagedObjectContext
     init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -20,10 +20,11 @@ class DataBase{
         let teamObj = NSManagedObject(entity: entity, insertInto: context)
         teamObj.setValue(team.team_name, forKey: "team_title")
         teamObj.setValue(team.team_logo, forKey: "team_img")
-        teamObj.setValue(team.team_key, forKey: "team_img")
+        teamObj.setValue(team.team_key, forKey: "teamID")
         teamObj.setValue(leagueType, forKey: "league")
         do{
             try context.save()
+            print("done essam")
         }catch let error as NSError{
             print(error.localizedDescription)
         }
@@ -36,7 +37,7 @@ class DataBase{
             for teamObj in teamdetails{
                 data.append(FavoritesData(name: teamObj.value(forKey: "team_title") as! String,
                                           image: teamObj.value(forKey: "team_img") as! String,
-                                          key: teamObj.value(forKey: "team_id")  as! String,
+                                          key: teamObj.value(forKey: "teamID")  as! String,
                                           type: teamObj.value(forKey: "league")  as! String))
             }
         }catch let error as NSError{

@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol RepositoryInterface:RemoteDataSource{
+protocol RepositoryInterface:RemoteDataSource,LocalDataSource{
     
 }
