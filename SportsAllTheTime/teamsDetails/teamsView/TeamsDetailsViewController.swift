@@ -12,6 +12,7 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
   @IBOutlet weak private var teamImage: UIImageView!
   @IBOutlet weak private var myTableView: UITableView!
     var team:Team?
+    var leagueType:String?
     var isFavorite = false
     override func viewDidLoad() {
         super.viewDidLoad()

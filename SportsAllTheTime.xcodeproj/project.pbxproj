@@ -47,6 +47,8 @@
 		DEBCF4B82A21BB9800529C3E /* TeamsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCF4B72A21BB9800529C3E /* TeamsResponse.swift */; };
 		DED129CF2A2647D000AD4D59 /* BindingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129CE2A2647D000AD4D59 /* BindingData.swift */; };
 		DED129D12A26483700AD4D59 /* SetCollectionSectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129D02A26483700AD4D59 /* SetCollectionSectionLayout.swift */; };
+		DED129D42A265B2D00AD4D59 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DED129D22A265B2100AD4D59 /* libsqlite3.0.tbd */; };
+		DED129D52A265B3400AD4D59 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DED129D32A265B2900AD4D59 /* libsqlite3.tbd */; };
 		DEDBAD7E2A1EA4C90058F375 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDBAD7D2A1EA4C90058F375 /* DetailsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +118,8 @@
 		DEBCF4B72A21BB9800529C3E /* TeamsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsResponse.swift; sourceTree = "<group>"; };
 		DED129CE2A2647D000AD4D59 /* BindingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingData.swift; sourceTree = "<group>"; };
 		DED129D02A26483700AD4D59 /* SetCollectionSectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCollectionSectionLayout.swift; sourceTree = "<group>"; };
+		DED129D22A265B2100AD4D59 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		DED129D32A265B2900AD4D59 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		DEDBAD7D2A1EA4C90058F375 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		FBE9F6213592985F487F87AD /* Pods_SportsAllTheTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsAllTheTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1A7CE7D5C5F1CED0313B04 /* Pods-SportsAllTheTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsAllTheTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-SportsAllTheTimeTests/Pods-SportsAllTheTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DED129D52A265B3400AD4D59 /* libsqlite3.tbd in Frameworks */,
+				DED129D42A265B2D00AD4D59 /* libsqlite3.0.tbd in Frameworks */,
 				83AC53AFEF189EE6AF0E2BF5 /* Pods_SportsAllTheTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +158,8 @@
 		4F80AEFD16CA38C81C53894C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DED129D32A265B2900AD4D59 /* libsqlite3.tbd */,
+				DED129D22A265B2100AD4D59 /* libsqlite3.0.tbd */,
 				FBE9F6213592985F487F87AD /* Pods_SportsAllTheTime.framework */,
 				1B29FBC68F285A87F165D703 /* Pods_SportsAllTheTime_SportsAllTheTimeUITests.framework */,
 				12EC201BCB4AA076278D6BC0 /* Pods_SportsAllTheTimeTests.framework */,

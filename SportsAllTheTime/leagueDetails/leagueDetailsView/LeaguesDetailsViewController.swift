@@ -66,6 +66,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         if(collectionView == secondColletionView){
             let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
             teamDetails.team = teams[indexPath.row]
+            teamDetails.leagueType = leagueType
             self.navigationController?.pushViewController(teamDetails, animated: true)
         }
     }
