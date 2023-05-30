@@ -37,7 +37,7 @@ class DataBase:LocalDataSource{
             for teamObj in teamdetails{
                 data.append(FavoritesData(name: teamObj.value(forKey: "team_title") as! String,
                                           image: teamObj.value(forKey: "team_img") as! String,
-                                          key: teamObj.value(forKey: "teamID")  as! String,
+                                          key: String(teamObj.value(forKey: "teamID")  as! Int),
                                           type: teamObj.value(forKey: "league")  as! String))
             }
         }catch let error as NSError{

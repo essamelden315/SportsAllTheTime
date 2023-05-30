@@ -55,6 +55,10 @@
 		DED129DD2A2661CD00AD4D59 /* TeamDetailsPresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129DC2A2661CD00AD4D59 /* TeamDetailsPresenterInterface.swift */; };
 		DED129DF2A2661DA00AD4D59 /* TeamDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129DE2A2661DA00AD4D59 /* TeamDetailsPresenter.swift */; };
 		DED129E12A26622C00AD4D59 /* TeamsDetailsViewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129E02A26622C00AD4D59 /* TeamsDetailsViewControllerInterface.swift */; };
+		DED129E62A266E9600AD4D59 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129E52A266E9600AD4D59 /* FavoriteTableViewController.swift */; };
+		DED129E82A266EFC00AD4D59 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129E72A266EFC00AD4D59 /* FavoritePresenter.swift */; };
+		DED129EA2A266F0800AD4D59 /* FavoritePresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129E92A266F0800AD4D59 /* FavoritePresenterInterface.swift */; };
+		DED129EC2A266F7F00AD4D59 /* FavoriteTableViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129EB2A266F7F00AD4D59 /* FavoriteTableViewInterface.swift */; };
 		DEDBAD7E2A1EA4C90058F375 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDBAD7D2A1EA4C90058F375 /* DetailsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +136,10 @@
 		DED129DC2A2661CD00AD4D59 /* TeamDetailsPresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsPresenterInterface.swift; sourceTree = "<group>"; };
 		DED129DE2A2661DA00AD4D59 /* TeamDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsPresenter.swift; sourceTree = "<group>"; };
 		DED129E02A26622C00AD4D59 /* TeamsDetailsViewControllerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsDetailsViewControllerInterface.swift; sourceTree = "<group>"; };
+		DED129E52A266E9600AD4D59 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
+		DED129E72A266EFC00AD4D59 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
+		DED129E92A266F0800AD4D59 /* FavoritePresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenterInterface.swift; sourceTree = "<group>"; };
+		DED129EB2A266F7F00AD4D59 /* FavoriteTableViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewInterface.swift; sourceTree = "<group>"; };
 		DEDBAD7D2A1EA4C90058F375 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		FBE9F6213592985F487F87AD /* Pods_SportsAllTheTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsAllTheTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1A7CE7D5C5F1CED0313B04 /* Pods-SportsAllTheTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsAllTheTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-SportsAllTheTimeTests/Pods-SportsAllTheTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -371,6 +379,7 @@
 		DEAAD46F2A1917980061CDCF /* SportsAllTheTime */ = {
 			isa = PBXGroup;
 			children = (
+				DED129E22A266BF200AD4D59 /* favoriteScreen */,
 				DE6E54882A1FCBFF00BC000D /* model */,
 				DE6E54872A1FCBF400BC000D /* database */,
 				DE6E54862A1FCBE700BC000D /* network */,
@@ -414,6 +423,33 @@
 				DED129D02A26483700AD4D59 /* SetCollectionSectionLayout.swift */,
 			);
 			path = extentions;
+			sourceTree = "<group>";
+		};
+		DED129E22A266BF200AD4D59 /* favoriteScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DED129E42A266D6200AD4D59 /* favoriteView */,
+				DED129E32A266D4A00AD4D59 /* favoritePresenter */,
+			);
+			path = favoriteScreen;
+			sourceTree = "<group>";
+		};
+		DED129E32A266D4A00AD4D59 /* favoritePresenter */ = {
+			isa = PBXGroup;
+			children = (
+				DED129E72A266EFC00AD4D59 /* FavoritePresenter.swift */,
+				DED129E92A266F0800AD4D59 /* FavoritePresenterInterface.swift */,
+			);
+			path = favoritePresenter;
+			sourceTree = "<group>";
+		};
+		DED129E42A266D6200AD4D59 /* favoriteView */ = {
+			isa = PBXGroup;
+			children = (
+				DED129E52A266E9600AD4D59 /* FavoriteTableViewController.swift */,
+				DED129EB2A266F7F00AD4D59 /* FavoriteTableViewInterface.swift */,
+			);
+			path = favoriteView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -657,6 +693,7 @@
 			files = (
 				DE6CE8572A1EFF0900F11719 /* LeaguesDetailsViewControllerInterface.swift in Sources */,
 				DE6E54922A1FD9CA00BC000D /* RepositoryInterface.swift in Sources */,
+				DED129E82A266EFC00AD4D59 /* FavoritePresenter.swift in Sources */,
 				DEAAD4752A1917980061CDCF /* ViewController.swift in Sources */,
 				DEBCF4B82A21BB9800529C3E /* TeamsResponse.swift in Sources */,
 				DE9EC1AC2A1CE41F006CAD3D /* LeaguesViewControllerInterface.swift in Sources */,
@@ -668,6 +705,7 @@
 				DED129DB2A26609000AD4D59 /* LocalDataSource.swift in Sources */,
 				DED129DF2A2661DA00AD4D59 /* TeamDetailsPresenter.swift in Sources */,
 				DE9EC1B02A1CE46B006CAD3D /* LeaguesPresenterInterface.swift in Sources */,
+				DED129EC2A266F7F00AD4D59 /* FavoriteTableViewInterface.swift in Sources */,
 				DE9EC1A42A1CE251006CAD3D /* HomePresenterInterface.swift in Sources */,
 				DEB724FC2A20384000DE036B /* UpComingResponse.swift in Sources */,
 				DED129D12A26483700AD4D59 /* SetCollectionSectionLayout.swift in Sources */,
@@ -681,12 +719,14 @@
 				DE6CE8612A1F08DC00F11719 /* TeamsDetailsViewController.swift in Sources */,
 				DE6E548A2A1FCC2100BC000D /* RemoteDataSource.swift in Sources */,
 				DE6E548E2A1FD72200BC000D /* leaguesResponse.swift in Sources */,
+				DED129E62A266E9600AD4D59 /* FavoriteTableViewController.swift in Sources */,
 				DED129E12A26622C00AD4D59 /* TeamsDetailsViewControllerInterface.swift in Sources */,
 				DE33EDDE2A1D119200DA2EB2 /* CollectionView2Cell.swift in Sources */,
 				DEDBAD7E2A1EA4C90058F375 /* DetailsTableViewCell.swift in Sources */,
 				DEAAD4732A1917980061CDCF /* SceneDelegate.swift in Sources */,
 				DED129DD2A2661CD00AD4D59 /* TeamDetailsPresenterInterface.swift in Sources */,
 				DE33EDDC2A1D118500DA2EB2 /* CollectionView1Cell.swift in Sources */,
+				DED129EA2A266F0800AD4D59 /* FavoritePresenterInterface.swift in Sources */,
 				DE9EC1A22A1CE249006CAD3D /* HomePresenter.swift in Sources */,
 				DED129D72A265C2800AD4D59 /* DataBase.swift in Sources */,
 				DED129CF2A2647D000AD4D59 /* BindingData.swift in Sources */,

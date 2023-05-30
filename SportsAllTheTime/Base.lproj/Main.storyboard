@@ -101,29 +101,33 @@
             </objects>
             <point key="canvasLocation" x="3161.0687022900761" y="0.70422535211267612"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Favorite Table View Controller-->
         <scene sceneID="5Nq-id-XGK">
             <objects>
-                <tableViewController id="zY5-8s-jdQ" sceneMemberID="viewController">
+                <tableViewController id="zY5-8s-jdQ" customClass="FavoriteTableViewController" customModule="SportsAllTheTime" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="lAw-0b-k5W">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="126" id="hGS-aO-GfP">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="126" id="hGS-aO-GfP" customClass="LeagueTableViewCell" customModule="SportsAllTheTime" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="126"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hGS-aO-GfP" id="fPE-SC-Rhp">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="126"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L6t-zR-xuU">
-                                            <rect key="frame" x="5" y="-19" width="383" height="80"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6t-zR-xuU">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="126"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Football100" translatesAutoresizingMaskIntoConstraints="NO" id="th8-Kg-ivW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTR-Qy-m6x">
+                                                    <rect key="frame" x="122" y="0.0" width="271" height="126"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Football100" translatesAutoresizingMaskIntoConstraints="NO" id="th8-Kg-ivW">
+                                                    <rect key="frame" x="2" y="18" width="110" height="90"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius&quot;">
                                                             <integer key="value" value="70"/>
@@ -131,18 +135,32 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTR-Qy-m6x">
-                                                    <rect key="frame" x="120" y="0.0" width="52" height="110"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="th8-Kg-ivW" secondAttribute="bottom" constant="18" id="39x-gF-Icy"/>
+                                                <constraint firstItem="ZTR-Qy-m6x" firstAttribute="leading" secondItem="th8-Kg-ivW" secondAttribute="trailing" constant="10" id="3yd-uE-R8F"/>
+                                                <constraint firstItem="th8-Kg-ivW" firstAttribute="height" secondItem="L6t-zR-xuU" secondAttribute="height" multiplier="0.714286" id="4uU-LE-lyS"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZTR-Qy-m6x" secondAttribute="trailing" id="XdN-R2-XYg"/>
+                                                <constraint firstItem="ZTR-Qy-m6x" firstAttribute="top" secondItem="L6t-zR-xuU" secondAttribute="top" id="cnE-ZL-otM"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZTR-Qy-m6x" secondAttribute="bottom" id="frD-dQ-V2y"/>
+                                                <constraint firstItem="th8-Kg-ivW" firstAttribute="top" secondItem="L6t-zR-xuU" secondAttribute="top" constant="18" id="j8q-IP-9sY"/>
+                                                <constraint firstItem="th8-Kg-ivW" firstAttribute="leading" secondItem="L6t-zR-xuU" secondAttribute="leading" constant="2" id="sw8-sF-Ss8"/>
+                                                <constraint firstItem="th8-Kg-ivW" firstAttribute="width" secondItem="L6t-zR-xuU" secondAttribute="width" multiplier="0.279898" id="uzB-6X-Jfs"/>
+                                            </constraints>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="L6t-zR-xuU" firstAttribute="top" secondItem="fPE-SC-Rhp" secondAttribute="top" id="9e6-W0-sRo"/>
+                                        <constraint firstItem="L6t-zR-xuU" firstAttribute="leading" secondItem="fPE-SC-Rhp" secondAttribute="leading" id="Z6e-L6-gUx"/>
+                                        <constraint firstAttribute="trailing" secondItem="L6t-zR-xuU" secondAttribute="trailing" id="hRO-5v-bH6"/>
+                                        <constraint firstAttribute="bottom" secondItem="L6t-zR-xuU" secondAttribute="bottom" id="lAP-7S-GTj"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="leagueImage" destination="th8-Kg-ivW" id="18W-S9-n2N"/>
+                                    <outlet property="leagueLabel" destination="ZTR-Qy-m6x" id="j44-DE-7EU"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -151,6 +169,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="HZz-sa-Rmd"/>
+                    <connections>
+                        <outlet property="myTableView" destination="lAw-0b-k5W" id="3IE-TA-gO7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wo1-5V-2N0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

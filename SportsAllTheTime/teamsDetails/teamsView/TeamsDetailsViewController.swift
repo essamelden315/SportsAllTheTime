@@ -47,7 +47,7 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
             cell.playerName.text = team!.coaches![indexPath.row].coach_name
             break
         default:
-            cell.playerImage.sd_setImage(with: URL(string: team!.players![indexPath.row].player_image!),placeholderImage: UIImage(named: "player.jpeg"))
+            cell.playerImage.sd_setImage(with: URL(string: team!.players![indexPath.row].player_image ?? ""),placeholderImage: UIImage(named: "player.jpeg"))
             cell.playerImage.layer.masksToBounds = false
             cell.playerImage.layer.cornerRadius =  cell.playerImage.frame.size.width/2
             cell.playerImage.clipsToBounds = true
@@ -68,6 +68,8 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
             sender.tintColor = UIColor.red
             isFavorite = true
             presenter?.addToFav(team: team!, leagueType: leagueType!)
+            var delegate : FavoriteTableViewInterface = FavoriteTableViewController()
+            delegate.getFavData()
         }
         
     }
