@@ -91,5 +91,20 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         }
         return cell
     }
+    func catchError(error:Error){
+        print(error.localizedDescription)
+    }
+    func showDataOfUpComingEvents(coming:[Events]){
+        upcomingList = coming
+        firstCollectionView.reloadData()
+    }
+    func showDataOfLatestEvents(latest:[Events]){
+        latestList = latest
+        myTableView.reloadData()
+    }
+    func showTeams(teams:[Team]){
+        self.teams = teams
+        secondColletionView.reloadData()
+    }
 }
 
