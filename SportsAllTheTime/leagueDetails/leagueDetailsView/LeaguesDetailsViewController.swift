@@ -65,10 +65,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == secondColletionView){
             let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
-            teamDetails.players = teams[indexPath.row].players
-            teamDetails.coach = teams[indexPath.row].coaches
-            teamDetails.logo = teams[indexPath.row].team_logo 
-            teamDetails.name = teams[indexPath.row].team_name
+            teamDetails.team = teams[indexPath.row]
             self.navigationController?.pushViewController(teamDetails, animated: true)
         }
     }
