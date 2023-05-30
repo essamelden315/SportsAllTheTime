@@ -15,6 +15,7 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
     var logo:String?
     var players:[Player]?
     var coach:[Coach]?
+    var isFavorite = false
     override func viewDidLoad() {
         super.viewDidLoad()
         teamName.text = name!
@@ -56,5 +57,19 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
         }
          
         return cell
+    }
+    
+    @IBAction func favoriteBtn(_ sender: UIButton) {
+        if isFavorite{
+            sender.setImage(UIImage(systemName: "heart"), for: .normal)
+            sender.tintColor = UIColor.tintColor
+            isFavorite = false
+        }else{
+            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            sender.tintColor = UIColor.red
+            isFavorite = true
+            
+        }
+        
     }
 }
