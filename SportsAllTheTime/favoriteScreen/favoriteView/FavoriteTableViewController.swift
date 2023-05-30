@@ -13,16 +13,13 @@ class FavoriteTableViewController: UITableViewController, FavoriteTableViewInter
     private var favoritesList:[FavoritesData]?
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = FavoritePresenter(repo: Repository.instance(remoteObj: ConcreteRemote(), localObj: DataBase()), view: self)
-         getFavData()
-
     }
     override func viewWillAppear(_ animated: Bool) {
-        getFavData()
+        presenter = FavoritePresenter(repo: Repository.instance(remoteObj: ConcreteRemote(), localObj: DataBase()), view: self)
+         getFavData()
     }
     func getFavData(){
         presenter?.showFavoritesData()
-        myTableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,8 +35,18 @@ class FavoriteTableViewController: UITableViewController, FavoriteTableViewInter
     }
   
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        presenter.
     }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            presenter?.deleteFromFavorite(name: favoritesList![indexPath.row].name)
+            favoritesList?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+
+    
+
     func showData(favorites:[FavoritesData]){
         favoritesList = favorites
         myTableView.reloadData()

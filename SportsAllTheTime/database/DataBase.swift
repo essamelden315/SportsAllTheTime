@@ -24,9 +24,8 @@ class DataBase:LocalDataSource{
         teamObj.setValue(leagueType, forKey: "league")
         do{
             try context.save()
-            print("done essam")
         }catch let error as NSError{
-            print(error.localizedDescription)
+            print("Error save data: \(error.localizedDescription)")
         }
     }
     func getUserFavorites()->[FavoritesData]{
@@ -41,8 +40,21 @@ class DataBase:LocalDataSource{
                                           type: teamObj.value(forKey: "league")  as! String))
             }
         }catch let error as NSError{
-            print(error.localizedDescription)
+            print("Error fetching data: \(error.localizedDescription)")
         }
         return data
+    }
+    func delete(name:String){
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Teams")
+        fetchRequest.predicate = NSPredicate(format: "team_title=%@", name)
+        do {
+            let result = try context.fetch(fetchRequest)
+            for item in result {
+                context.delete(item)
+            }
+            try context.save()
+        } catch {
+            print("Error deleting item: \(error.localizedDescription)")
+        }
     }
 }

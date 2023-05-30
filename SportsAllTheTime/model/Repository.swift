@@ -35,4 +35,9 @@ class Repository:RepositoryInterface{
     func getUserFavorites() -> [FavoritesData] {
         return local.getUserFavorites()
     }
+    
+    func delete(name: String) {
+        local.delete(name: name)
+    }
+    
 }

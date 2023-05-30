@@ -16,4 +16,7 @@ class FavoritePresenter:FavoritePresenterInterface{
     func showFavoritesData(){
         view.showData(favorites: repo.getUserFavorites())
     }
+    func deleteFromFavorite(name:String){
+        repo.delete(name: name)
+    }
 }

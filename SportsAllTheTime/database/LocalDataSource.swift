@@ -9,4 +9,5 @@ import Foundation
 protocol LocalDataSource{
     func addToFavorite(team:Team,leagueType:String)
     func getUserFavorites()->[FavoritesData]
+    func delete(name:String)
 }

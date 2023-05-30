@@ -8,4 +8,5 @@
 import Foundation
 protocol FavoritePresenterInterface{
     func showFavoritesData()
+    func deleteFromFavorite(name:String)
 }
