@@ -35,7 +35,12 @@ class FavoriteTableViewController: UITableViewController, FavoriteTableViewInter
     }
   
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.
+        let team = presenter?.getLeagueTeams(type: favoritesList![indexPath.row].type, leagueID: 0, teamId: favoritesList![indexPath.row].key)
+        let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
+        teamDetails.team = team!
+        teamDetails.leagueType = favoritesList![indexPath.row].type
+        self.navigationController?.pushViewController(teamDetails, animated: true)
+        
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -45,7 +50,9 @@ class FavoriteTableViewController: UITableViewController, FavoriteTableViewInter
         }
     }
 
-    
+    func catchError(error:Error){
+        print(error.localizedDescription)
+    }
 
     func showData(favorites:[FavoritesData]){
         favoritesList = favorites
