@@ -91,19 +91,31 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         return cell
     }
     func catchError(error:Error){
+        firstCollectionView.addSubview(createMyView())
+        myTableView.addSubview(createMyView())
+        secondColletionView.addSubview(createMyView())
         print(error.localizedDescription)
     }
     func showDataOfUpComingEvents(coming:[Events]){
-        upcomingList = coming
-        firstCollectionView.reloadData()
+            upcomingList = coming
+            firstCollectionView.reloadData()
+        
     }
     func showDataOfLatestEvents(latest:[Events]){
-        latestList = latest
-        myTableView.reloadData()
+            latestList = latest
+            myTableView.reloadData()
     }
     func showTeams(teams:[Team]){
-        self.teams = teams
-        secondColletionView.reloadData()
+            self.teams = teams
+            secondColletionView.reloadData()
+    }
+    func createMyView() -> UIView {
+        let myView = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 100))
+        let myImage = UIImageView(image: UIImage(named: "notfound.jpeg"))
+        myImage.frame = myView.bounds
+        myImage.contentMode = .scaleAspectFill
+        myView.addSubview(myImage)
+        return myView
     }
 }
 
