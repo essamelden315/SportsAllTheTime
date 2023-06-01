@@ -17,7 +17,7 @@ class DetailsLeaguePresenter:DetailsLeaguePresenterInterface{
         repo.getUpComingEvents(type: type, from: from, to: to, leagueID: leagueID) { result, error in
             DispatchQueue.main.async {
                 guard let result = result else{
-                    self.view.catchError(error: error!)
+                    self.view.catchError(error: "Error in upcoming")
                     return
                 }
                 self.view.showDataOfUpComingEvents(coming: result)
@@ -28,7 +28,7 @@ class DetailsLeaguePresenter:DetailsLeaguePresenterInterface{
         repo.getUpComingEvents(type: type, from: from, to: to, leagueID: leagueID) { result, error in
             DispatchQueue.main.async {
                 guard let result = result else{
-                    self.view.catchError(error: error!)
+                    self.view.catchError(error: "Error in latest")
                     return
                 }
                 self.view.showDataOfLatestEvents(latest: result)
@@ -39,7 +39,7 @@ class DetailsLeaguePresenter:DetailsLeaguePresenterInterface{
         repo.getLeagueTeams(type: type, leagueID: leagueID,teamId: teamId) { result, error in
             DispatchQueue.main.async {
                 guard let result = result else{
-                    self.view.catchError(error: error!)
+                    self.view.catchError(error: "Error in teams")
                     return
                 }
                 self.view.showTeams(teams: result) 

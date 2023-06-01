@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 protocol LeaguesDetailsViewControllerInterface{
-    func catchError(error:Error)
+    func catchError(error:String)
     func showDataOfUpComingEvents(coming:[Events])
     func showDataOfLatestEvents(latest:[Events])
     func showTeams(teams:[Team])

@@ -17,6 +17,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     var leagueType:String?
     var leagueId:Int?
     var teams = [Team]()
+    var myView:UIView?
     override func viewDidLoad() {
         super.viewDidLoad()
         editNavigationBar()
@@ -28,7 +29,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         presenter.getLatestEvents(type: (leagueType?.lowercased())!, from: "2023-03-01", to: "2023-05-28", leagueID: leagueId!)
         //calling for showing teams
         presenter.getLeagueTeams(type: (leagueType?.lowercased())!, leagueID: String(leagueId!),teamId: "")
-        
+        myView = createMyView()
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == firstCollectionView){
@@ -90,16 +91,21 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         }
         return cell
     }
-    func catchError(error:Error){
-        firstCollectionView.addSubview(createMyView())
-        myTableView.addSubview(createMyView())
-        secondColletionView.addSubview(createMyView())
-        print(error.localizedDescription)
+    func catchError(error:String){
+        if error == "Error in upcoming"{
+            firstCollectionView.addSubview(createMyView())
+        }
+        if error == "Error in latest" {
+            myTableView.addSubview(createMyView())
+        }
+        if error == "Error in teams" {
+            secondColletionView.addSubview(createMyView())
+        }
+        print(error)
     }
     func showDataOfUpComingEvents(coming:[Events]){
             upcomingList = coming
             firstCollectionView.reloadData()
-        
     }
     func showDataOfLatestEvents(latest:[Events]){
             latestList = latest

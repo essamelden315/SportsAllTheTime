@@ -35,7 +35,7 @@ class FavoriteTableViewController: UITableViewController, FavoriteTableViewInter
     }
   
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let team = presenter?.getLeagueTeams(type: (favoritesList![indexPath.row].type).lowercased(), leagueID: "", teamId: favoritesList![indexPath.row].key)
+         presenter?.getLeagueTeams(type: (favoritesList![indexPath.row].type).lowercased(), leagueID: "", teamId: favoritesList![indexPath.row].key)
         
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
