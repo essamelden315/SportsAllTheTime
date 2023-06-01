@@ -10,6 +10,7 @@ import SDWebImage
 class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate ,LeaguesViewControllerInterface{
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var mySearchBar: UISearchBar!
+    let networkIndication = UIActivityIndicatorView(style: .large)
     var leagueType:String?
     var league = [Results]()
     var isFilterd:Bool?
@@ -23,6 +24,10 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         let presenter:LeaguesPresenterInterface = LeaguesPresenter(repo: Repository.instance(remoteObj:ConcreteRemote(),localObj: DataBase()), view: self)
         presenter.getData(type:(leagueType?.lowercased())!)
         isFilterd = false
+        networkIndication.color = UIColor.black
+        networkIndication.center = view.center
+        networkIndication.startAnimating()
+        view.addSubview(networkIndication)
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -91,10 +96,6 @@ extension LeaguesViewController{
     func showData(leagues: [Results]) {
         league = leagues
         myTableView.reloadData()
+        networkIndication.stopAnimating()
     }
 }
-/*
- listImgs = ["https://i.pinimg.com/236x/b9/2e/35/b92e359d679e90497e2eee2b1346d9ec.jpg",
- "https://i.pinimg.com/236x/5a/4e/8d/5a4e8d4d23fea497145b79b51559afd5.jpg",
- "https://i.pinimg.com/236x/d5/b3/ff/d5b3ff58b2923685e42de424335cefce.jpg",
- "https://i.pinimg.com/236x/65/2b/db/652bdbfe4746a4a622404f0c3637dab6.jpg"]*/
