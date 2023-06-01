@@ -13,7 +13,7 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
   @IBOutlet weak private var myTableView: UITableView!
     var team:Team?
     var leagueType:String?
-    var isFavorite = false
+    var isFavorite:Bool?
     var presenter : TeamDetailsPresenterInterface?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,7 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
             teamImage.image = UIImage(named: "teamlogo.jpeg")
         }
         presenter = TeamDetailsPresenter(repo: Repository.instance(remoteObj: ConcreteRemote(), localObj: DataBase()), view: self)
+        paintTheButton(isPaint: isFavorite!)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,18 +60,25 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
     }
     
     @IBAction func favoriteBtn(_ sender: UIButton) {
-        if isFavorite{
-            sender.setImage(UIImage(systemName: "heart"), for: .normal)
-            sender.tintColor = UIColor.tintColor
+        if isFavorite!{
+            paintTheButton(isPaint: isFavorite!)
             isFavorite = false
         }else{
-            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            sender.tintColor = UIColor.red
-            isFavorite = true
+            paintTheButton(isPaint: isFavorite!)
             presenter?.addToFav(team: team!, leagueType: leagueType!)
-            var delegate : FavoriteTableViewInterface = FavoriteTableViewController()
-            delegate.getFavData()
+            isFavorite = true
         }
         
+    }
+    
+    @IBOutlet weak var favBtn: UIButton!
+    func paintTheButton(isPaint:Bool){
+        if isPaint{
+            favBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            favBtn.tintColor = UIColor.red
+        }else{
+            favBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+            favBtn.tintColor = UIColor.tintColor
+        }
     }
 }

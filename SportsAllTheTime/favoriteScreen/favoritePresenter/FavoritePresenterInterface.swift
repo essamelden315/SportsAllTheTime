@@ -9,5 +9,5 @@ import Foundation
 protocol FavoritePresenterInterface{
     func showFavoritesData()
     func deleteFromFavorite(name:String)
-    func getLeagueTeams(type: String, leagueID:Int,teamId:String)->Team
+    func getLeagueTeams(type: String, leagueID:String,teamId:String)
 }

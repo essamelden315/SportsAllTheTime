@@ -25,7 +25,7 @@ class Repository:RepositoryInterface{
         remote.getUpComingEvents(type: type, from: from, to: to, leagueID: leagueID, complitionHandler: complitionHandler)
     }
     
-    func getLeagueTeams(type: String, leagueID: Int,teamId:String ,complitionHandler: @escaping ([Team]?, Error?) -> Void) {
+    func getLeagueTeams(type: String, leagueID: String,teamId:String ,complitionHandler: @escaping ([Team]?, Error?) -> Void) {
         remote.getLeagueTeams(type: type, leagueID: leagueID,teamId: teamId, complitionHandler: complitionHandler)
     }
     func addToFavorite(team: Team, leagueType: String) {

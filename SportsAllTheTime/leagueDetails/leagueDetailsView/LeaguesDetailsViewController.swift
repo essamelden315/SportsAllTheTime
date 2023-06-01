@@ -27,7 +27,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         //calling for leatest event
         presenter.getLatestEvents(type: (leagueType?.lowercased())!, from: "2023-03-01", to: "2023-05-28", leagueID: leagueId!)
         //calling for showing teams
-        presenter.getLeagueTeams(type: (leagueType?.lowercased())!, leagueID: leagueId!,teamId: "")
+        presenter.getLeagueTeams(type: (leagueType?.lowercased())!, leagueID: String(leagueId!),teamId: "")
         
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -67,6 +67,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
             let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
             teamDetails.team = teams[indexPath.row]
             teamDetails.leagueType = leagueType
+            teamDetails.isFavorite=false
             self.navigationController?.pushViewController(teamDetails, animated: true)
         }
     }

@@ -35,11 +35,7 @@ class FavoriteTableViewController: UITableViewController, FavoriteTableViewInter
     }
   
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let team = presenter?.getLeagueTeams(type: favoritesList![indexPath.row].type, leagueID: 0, teamId: favoritesList![indexPath.row].key)
-        let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
-        teamDetails.team = team!
-        teamDetails.leagueType = favoritesList![indexPath.row].type
-        self.navigationController?.pushViewController(teamDetails, animated: true)
+        let team = presenter?.getLeagueTeams(type: (favoritesList![indexPath.row].type).lowercased(), leagueID: "", teamId: favoritesList![indexPath.row].key)
         
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -57,6 +53,14 @@ class FavoriteTableViewController: UITableViewController, FavoriteTableViewInter
     func showData(favorites:[FavoritesData]){
         favoritesList = favorites
         myTableView.reloadData()
+    }
+    func navigateToDetailsScreen(team:Team){
+        
+        let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
+        teamDetails.team = team
+        teamDetails.leagueType = ""
+        teamDetails.isFavorite = true
+        self.navigationController?.pushViewController(teamDetails, animated: true)
     }
     
 }

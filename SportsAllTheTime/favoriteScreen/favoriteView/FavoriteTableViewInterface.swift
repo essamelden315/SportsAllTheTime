@@ -10,4 +10,6 @@ protocol FavoriteTableViewInterface{
     func showData(favorites:[FavoritesData])
     func getFavData()
     func catchError(error:Error)
+    func navigateToDetailsScreen(team:Team)
+        
 }

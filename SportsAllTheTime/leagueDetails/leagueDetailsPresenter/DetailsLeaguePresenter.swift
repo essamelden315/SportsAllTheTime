@@ -35,7 +35,7 @@ class DetailsLeaguePresenter:DetailsLeaguePresenterInterface{
             }
         }
     }
-    func getLeagueTeams(type: String, leagueID:Int,teamId:String){
+    func getLeagueTeams(type: String, leagueID:String,teamId:String){
         repo.getLeagueTeams(type: type, leagueID: leagueID,teamId: teamId) { result, error in
             DispatchQueue.main.async {
                 guard let result = result else{

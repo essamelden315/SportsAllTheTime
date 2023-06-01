@@ -19,20 +19,17 @@ class FavoritePresenter:FavoritePresenterInterface{
     func deleteFromFavorite(name:String){
         repo.delete(name: name)
     }
-    func getLeagueTeams(type: String, leagueID:Int,teamId:String)->Team{
-        var list = Team()
+    func getLeagueTeams(type: String, leagueID:String,teamId:String){
         repo.getLeagueTeams(type: type, leagueID: leagueID,teamId: teamId) { result, error in
             DispatchQueue.main.async {
                 guard let result = result else{
                     self.view.catchError(error: error!)
                     return
                 }
-                for item in result{
-                    list = item
+                for t in result {
+                    self.view.navigateToDetailsScreen(team: t)
                 }
-                
             }
         }
-        return list
     }
 }

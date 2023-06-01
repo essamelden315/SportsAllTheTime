@@ -168,14 +168,14 @@
                             <outlet property="delegate" destination="zY5-8s-jdQ" id="TfA-7d-YBy"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="HZz-sa-Rmd"/>
+                    <navigationItem key="navigationItem" id="9oA-Yv-jte"/>
                     <connections>
                         <outlet property="myTableView" destination="lAw-0b-k5W" id="3IE-TA-gO7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wo1-5V-2N0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1307.6335877862596" y="716.90140845070425"/>
+            <point key="canvasLocation" x="2234.3511450381679" y="716.90140845070425"/>
         </scene>
         <!--Leagues View Controller-->
         <scene sceneID="PgA-AC-fTA">
@@ -724,6 +724,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="favBtn" destination="Ogt-TC-HJZ" id="Gpb-b2-Fbj"/>
                         <outlet property="myTableView" destination="Zxk-6Y-vHA" id="Bxi-8a-rbd"/>
                         <outlet property="teamImage" destination="ndD-PM-EkI" id="Mqd-TE-vCn"/>
                         <outlet property="teamName" destination="1Mu-Bl-Ici" id="JLK-ve-Xr2"/>
@@ -736,6 +737,7 @@
         <!--Sports-->
         <scene sceneID="2rW-be-sWw">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TXy-wQ-HoO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7C3-mX-qvR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Sports" image="sportscourt.fill" catalog="system" id="qdt-3b-XA1">
                         <imageReference key="selectedImage" image="sportscourt.fill" catalog="system" symbolScale="large"/>
@@ -750,7 +752,6 @@
                         <segue destination="9um-Bk-tp9" kind="relationship" relationship="rootViewController" id="wd4-gp-TYQ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TXy-wQ-HoO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2234.3511450381679" y="0.70422535211267612"/>
         </scene>
@@ -766,12 +767,31 @@
                     </tabBar>
                     <connections>
                         <segue destination="7C3-mX-qvR" kind="relationship" relationship="viewControllers" id="X8d-5c-KrW"/>
-                        <segue destination="zY5-8s-jdQ" kind="relationship" relationship="viewControllers" id="KKt-Y8-DyK"/>
+                        <segue destination="qkg-iu-fCc" kind="relationship" relationship="viewControllers" id="KKt-Y8-DyK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r1x-l0-zJ7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1307.6335877862596" y="0.70422535211267612"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="29c-yz-GSb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qkg-iu-fCc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="HZz-sa-Rmd"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="woT-W3-Uol">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zY5-8s-jdQ" kind="relationship" relationship="rootViewController" id="Xra-j4-017"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oTp-DW-2Uu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1307.6335877862596" y="716.90140845070425"/>
         </scene>
     </scenes>
     <resources>
