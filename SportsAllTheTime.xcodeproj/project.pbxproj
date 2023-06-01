@@ -48,6 +48,7 @@
 		DEAE87C32A276B4400DF4F22 /* MockConcreteRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE87C22A276B4400DF4F22 /* MockConcreteRemote.swift */; };
 		DEB724FC2A20384000DE036B /* UpComingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB724FB2A20384000DE036B /* UpComingResponse.swift */; };
 		DEBCF4B82A21BB9800529C3E /* TeamsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCF4B72A21BB9800529C3E /* TeamsResponse.swift */; };
+		DEBE43422A292F6C00FBDE0C /* ShowRetrivedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43412A292F6C00FBDE0C /* ShowRetrivedData.swift */; };
 		DED129CF2A2647D000AD4D59 /* BindingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129CE2A2647D000AD4D59 /* BindingData.swift */; };
 		DED129D12A26483700AD4D59 /* SetCollectionSectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129D02A26483700AD4D59 /* SetCollectionSectionLayout.swift */; };
 		DED129D42A265B2D00AD4D59 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DED129D22A265B2100AD4D59 /* libsqlite3.0.tbd */; };
@@ -133,6 +134,7 @@
 		DEAE87C22A276B4400DF4F22 /* MockConcreteRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConcreteRemote.swift; sourceTree = "<group>"; };
 		DEB724FB2A20384000DE036B /* UpComingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingResponse.swift; sourceTree = "<group>"; };
 		DEBCF4B72A21BB9800529C3E /* TeamsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsResponse.swift; sourceTree = "<group>"; };
+		DEBE43412A292F6C00FBDE0C /* ShowRetrivedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRetrivedData.swift; sourceTree = "<group>"; };
 		DED129CE2A2647D000AD4D59 /* BindingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingData.swift; sourceTree = "<group>"; };
 		DED129D02A26483700AD4D59 /* SetCollectionSectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCollectionSectionLayout.swift; sourceTree = "<group>"; };
 		DED129D22A265B2100AD4D59 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -433,6 +435,7 @@
 			children = (
 				DED129CE2A2647D000AD4D59 /* BindingData.swift */,
 				DED129D02A26483700AD4D59 /* SetCollectionSectionLayout.swift */,
+				DEBE43412A292F6C00FBDE0C /* ShowRetrivedData.swift */,
 			);
 			path = extentions;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				DE6CE8612A1F08DC00F11719 /* TeamsDetailsViewController.swift in Sources */,
 				DE6E548A2A1FCC2100BC000D /* RemoteDataSource.swift in Sources */,
 				DE6E548E2A1FD72200BC000D /* leaguesResponse.swift in Sources */,
+				DEBE43422A292F6C00FBDE0C /* ShowRetrivedData.swift in Sources */,
 				DED129E62A266E9600AD4D59 /* FavoriteTableViewController.swift in Sources */,
 				DED129E12A26622C00AD4D59 /* TeamsDetailsViewControllerInterface.swift in Sources */,
 				DE33EDDE2A1D119200DA2EB2 /* CollectionView2Cell.swift in Sources */,
