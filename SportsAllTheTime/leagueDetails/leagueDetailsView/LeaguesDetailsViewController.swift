@@ -12,12 +12,12 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     @IBOutlet weak var secondColletionView: UICollectionView!
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var firstCollectionView: UICollectionView!
+    let networkIndication = UIActivityIndicatorView(style: .large)
     var upcomingList = [Events]()
     var latestList = [Events]()
     var leagueType:String?
     var leagueId:Int?
     var teams = [Team]()
-    var myView:UIView?
     override func viewDidLoad() {
         super.viewDidLoad()
         editNavigationBar()
@@ -29,7 +29,10 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         presenter.getLatestEvents(type: (leagueType?.lowercased())!, from: "2023-03-01", to: "2023-05-28", leagueID: leagueId!)
         //calling for showing teams
         presenter.getLeagueTeams(type: (leagueType?.lowercased())!, leagueID: String(leagueId!),teamId: "")
-        myView = createMyView()
+        networkIndication.color = UIColor.black
+        networkIndication.center = view.center
+        networkIndication.startAnimating()
+        view.addSubview(networkIndication)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == firstCollectionView){
@@ -94,26 +97,32 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     func catchError(error:String){
         if error == "Error in upcoming"{
             firstCollectionView.addSubview(createMyView())
+            networkIndication.stopAnimating()
         }
         if error == "Error in latest" {
             myTableView.addSubview(createMyView())
+            networkIndication.stopAnimating()
         }
         if error == "Error in teams" {
             secondColletionView.addSubview(createMyView())
+            networkIndication.stopAnimating()
         }
         print(error)
     }
     func showDataOfUpComingEvents(coming:[Events]){
             upcomingList = coming
             firstCollectionView.reloadData()
+        networkIndication.stopAnimating()
     }
     func showDataOfLatestEvents(latest:[Events]){
             latestList = latest
             myTableView.reloadData()
+        networkIndication.stopAnimating()
     }
     func showTeams(teams:[Team]){
             self.teams = teams
             secondColletionView.reloadData()
+        networkIndication.stopAnimating()
     }
     func createMyView() -> UIView {
         let myView = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 100))
