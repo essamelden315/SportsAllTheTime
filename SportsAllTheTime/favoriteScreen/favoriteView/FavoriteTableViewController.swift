@@ -29,7 +29,7 @@ class FavoriteTableViewController: UITableViewController, FavoriteTableViewInter
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!
         LeagueTableViewCell
-        cell.leagueImage.sd_setImage(with: URL(string: favoritesList![indexPath.row].image),placeholderImage: UIImage(named: "football100.jpeg"))
+        cell.leagueImage.sd_setImage(with: URL(string: favoritesList![indexPath.row].image),placeholderImage: UIImage(named: "teamlogo.jpeg"))
         cell.leagueLabel.text = favoritesList![indexPath.row].name
         return cell
     }

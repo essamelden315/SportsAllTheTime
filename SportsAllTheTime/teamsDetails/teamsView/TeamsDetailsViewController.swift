@@ -11,6 +11,7 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
   @IBOutlet weak private var teamName: UILabel!
   @IBOutlet weak private var teamImage: UIImageView!
   @IBOutlet weak private var myTableView: UITableView!
+    let networkIndication = UIActivityIndicatorView(style: .large)
     var team:Team?
     var leagueType:String?
     var isFavorite:Bool?
@@ -25,6 +26,20 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
         }
         presenter = TeamDetailsPresenter(repo: Repository.instance(remoteObj: ConcreteRemote(), localObj: DataBase()), view: self)
         paintTheButton(isPaint: isFavorite!)
+        networkIndication.color = UIColor.black
+        networkIndication.center = view.center
+        networkIndication.startAnimating()
+        view.addSubview(networkIndication)
+        if team?.players == nil {
+            let myView = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 100))
+            let myImage = UIImageView(image: UIImage(named: "notfound.jpeg"))
+            myImage.frame = myView.bounds
+            myImage.contentMode = .scaleAspectFill
+            myView.addSubview(myImage)
+            myTableView.addSubview(myView)
+            networkIndication.stopAnimating()
+        }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,6 +63,7 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
             cell.playerName.text = team!.coaches![indexPath.row].coach_name
             break
         default:
+            networkIndication.stopAnimating()
             cell.playerImage.sd_setImage(with: URL(string: team!.players![indexPath.row].player_image ?? ""),placeholderImage: UIImage(named: "player.jpeg"))
             cell.playerImage.layer.masksToBounds = false
             cell.playerImage.layer.cornerRadius =  cell.playerImage.frame.size.width/2

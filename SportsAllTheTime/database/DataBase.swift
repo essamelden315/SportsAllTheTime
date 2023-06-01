@@ -35,7 +35,7 @@ class DataBase:LocalDataSource{
             let teamdetails = try context.fetch(fetchRequest)
             for teamObj in teamdetails{
                 data.append(FavoritesData(name: teamObj.value(forKey: "team_title") as! String,
-                                          image: teamObj.value(forKey: "team_img") as! String,
+                                          image: teamObj.value(forKey: "team_img") as? String ?? "teamlogo.jpeg",
                                           key: String(teamObj.value(forKey: "teamID")  as! Int),
                                           type: teamObj.value(forKey: "league")  as! String))
             }
