@@ -7,6 +7,8 @@
 
 import Foundation
 class Repository:RepositoryInterface{
+   
+    
     private var remote : RemoteDataSource
     private var local : LocalDataSource
     private init(remote: RemoteDataSource,local:LocalDataSource) {
@@ -38,6 +40,9 @@ class Repository:RepositoryInterface{
     
     func delete(name: String) {
         local.delete(name: name)
+    }
+    func searchByID(id: Int) -> Int {
+        local.searchByID(id: id)
     }
     
 }

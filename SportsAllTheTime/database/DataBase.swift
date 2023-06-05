@@ -57,4 +57,19 @@ class DataBase:LocalDataSource{
             print("Error deleting item: \(error.localizedDescription)")
         }
     }
+    func searchByID(id:Int)->Int{
+        var retVal = 0
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Teams")
+        fetchRequest.predicate = NSPredicate(format: "teamID=%d", id)
+        do {
+            let result = try context.fetch(fetchRequest)
+            for _ in result {
+                retVal = 1
+            }
+            try context.save()
+        } catch {
+            print("Error deleting item: \(error.localizedDescription)")
+        }
+        return retVal
+    }
 }

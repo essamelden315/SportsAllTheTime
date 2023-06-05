@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         let animationView = LottieAnimationView(name: "loadballs")
-        animationView.frame = CGRect(x: -40, y:view.bounds.height/3 , width: 500, height: 500)
+        animationView.frame = CGRect(x: -40, y:view.bounds.height/4 , width: 500, height: 500)
         view.addSubview(animationView)
 
         animationView.play(fromProgress: 0, toProgress: 1, loopMode: .playOnce) { (finished) in
@@ -24,7 +24,6 @@ class ViewController: UIViewController {
             home.modalTransitionStyle = .crossDissolve
             self.present(home, animated: true)
         }
-//        animationView.animationSpeed = Float(animationView.animation!.duration) / Float(duration)
        
        
     }

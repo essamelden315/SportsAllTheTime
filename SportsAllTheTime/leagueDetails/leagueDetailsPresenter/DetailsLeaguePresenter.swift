@@ -46,4 +46,7 @@ class DetailsLeaguePresenter:DetailsLeaguePresenterInterface{
             }
         }
     }
+    func findTeamByID(id:Int)->Int{
+        return repo.searchByID(id: id)
+    }
 }

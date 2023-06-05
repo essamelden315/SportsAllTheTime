@@ -18,17 +18,18 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     var leagueType:String?
     var leagueId:Int?
     var teams = [Team]()
+    var presenter:DetailsLeaguePresenterInterface?
     override func viewDidLoad() {
         super.viewDidLoad()
         editNavigationBar()
         setSectionLayout()
-        let presenter:DetailsLeaguePresenterInterface = DetailsLeaguePresenter(repo: Repository.instance(remoteObj: ConcreteRemote(),localObj: DataBase()), view: self)
+         presenter = DetailsLeaguePresenter(repo: Repository.instance(remoteObj: ConcreteRemote(),localObj: DataBase()), view: self)
         //calling for upcoming events
-        presenter.getUpComingEvents(type: (leagueType?.lowercased())!, from: "2023-05-27", to: "2023-06-30", leagueID: leagueId!)
+        presenter!.getUpComingEvents(type: (leagueType?.lowercased())!, from: "2023-05-27", to: "2023-06-30", leagueID: leagueId!)
         //calling for leatest event
-        presenter.getLatestEvents(type: (leagueType?.lowercased())!, from: "2023-03-01", to: "2023-05-28", leagueID: leagueId!)
+        presenter!.getLatestEvents(type: (leagueType?.lowercased())!, from: "2023-03-01", to: "2023-05-28", leagueID: leagueId!)
         //calling for showing teams
-        presenter.getLeagueTeams(type: (leagueType?.lowercased())!, leagueID: String(leagueId!),teamId: "")
+        presenter!.getLeagueTeams(type: (leagueType?.lowercased())!, leagueID: String(leagueId!),teamId: "")
         networkIndication.color = UIColor.black
         networkIndication.center = view.center
         networkIndication.startAnimating()
@@ -71,7 +72,12 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
             let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
             teamDetails.team = teams[indexPath.row]
             teamDetails.leagueType = leagueType
-            teamDetails.isFavorite=false
+            let res = presenter?.findTeamByID(id: Int(teams[indexPath.row].team_key!))
+            if res == 0{
+                teamDetails.isFavorite=false
+            }else{
+                teamDetails.isFavorite=true
+            }
             self.navigationController?.pushViewController(teamDetails, animated: true)
         }
     }
