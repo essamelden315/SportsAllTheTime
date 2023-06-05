@@ -40,9 +40,7 @@ class FavoriteTableViewController: UITableViewController, FavoriteTableViewInter
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            presenter?.deleteFromFavorite(name: favoritesList![indexPath.row].name)
-            favoritesList?.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            alertDialog(index: indexPath)
         }
     }
 
@@ -61,6 +59,16 @@ class FavoriteTableViewController: UITableViewController, FavoriteTableViewInter
         teamDetails.leagueType = ""
         teamDetails.isFavorite = true
         self.navigationController?.pushViewController(teamDetails, animated: true)
+    }
+    func alertDialog(index:IndexPath){
+        let alert:UIAlertController = UIAlertController(title: "Remove", message: "Are you sure you want to remove it from favorite", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default,handler: { action in
+            self.presenter?.deleteFromFavorite(name: self.favoritesList![index.row].name)
+            self.favoritesList?.remove(at: index.row)
+            self.tableView.deleteRows(at: [index], with: .fade)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default))
+        self.present(alert,animated: true,completion: nil)
     }
     
 }
