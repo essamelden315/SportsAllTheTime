@@ -16,4 +16,7 @@ class TeamDetailsPresenter:TeamDetailsPresenterInterface{
     func addToFav(team: Team, leagueType: String){
         repo.addToFavorite(team: team, leagueType: leagueType)
     }
+    func deleteFav(teamName:String){
+        repo.delete(name: teamName)
+    }
 }

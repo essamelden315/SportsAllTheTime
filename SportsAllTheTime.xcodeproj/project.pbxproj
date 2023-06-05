@@ -34,6 +34,8 @@
 		DE9EC1AE2A1CE45C006CAD3D /* LeaguesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9EC1AD2A1CE45C006CAD3D /* LeaguesPresenter.swift */; };
 		DE9EC1B02A1CE46B006CAD3D /* LeaguesPresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9EC1AF2A1CE46B006CAD3D /* LeaguesPresenterInterface.swift */; };
 		DE9EC1B22A1CE84E006CAD3D /* LeagueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9EC1B12A1CE84E006CAD3D /* LeagueTableViewCell.swift */; };
+		DEA36A752A2DF87A00BA6AC9 /* FaovriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA36A742A2DF87A00BA6AC9 /* FaovriteButton.swift */; };
+		DEA36A772A2DFDFB00BA6AC9 /* AlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA36A762A2DFDFB00BA6AC9 /* AlertDialog.swift */; };
 		DEAAD4712A1917980061CDCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAAD4702A1917980061CDCF /* AppDelegate.swift */; };
 		DEAAD4732A1917980061CDCF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAAD4722A1917980061CDCF /* SceneDelegate.swift */; };
 		DEAAD4752A1917980061CDCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAAD4742A1917980061CDCF /* ViewController.swift */; };
@@ -116,6 +118,8 @@
 		DE9EC1AD2A1CE45C006CAD3D /* LeaguesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesPresenter.swift; sourceTree = "<group>"; };
 		DE9EC1AF2A1CE46B006CAD3D /* LeaguesPresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesPresenterInterface.swift; sourceTree = "<group>"; };
 		DE9EC1B12A1CE84E006CAD3D /* LeagueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueTableViewCell.swift; sourceTree = "<group>"; };
+		DEA36A742A2DF87A00BA6AC9 /* FaovriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaovriteButton.swift; sourceTree = "<group>"; };
+		DEA36A762A2DFDFB00BA6AC9 /* AlertDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDialog.swift; sourceTree = "<group>"; };
 		DEAAD46D2A1917980061CDCF /* SportsAllTheTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsAllTheTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEAAD4702A1917980061CDCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEAAD4722A1917980061CDCF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 		DE6CE85E2A1F088C00F11719 /* teamsView */ = {
 			isa = PBXGroup;
 			children = (
+				DEA36A732A2DF85F00BA6AC9 /* extensions */,
 				DE6CE8602A1F08DC00F11719 /* TeamsDetailsViewController.swift */,
 				DE6CE8622A1F097300F11719 /* TeamTableViewCell.swift */,
 				DED129E02A26622C00AD4D59 /* TeamsDetailsViewControllerInterface.swift */,
@@ -362,6 +367,15 @@
 				DE9EC1AF2A1CE46B006CAD3D /* LeaguesPresenterInterface.swift */,
 			);
 			path = leaguesPresenter;
+			sourceTree = "<group>";
+		};
+		DEA36A732A2DF85F00BA6AC9 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DEA36A742A2DF87A00BA6AC9 /* FaovriteButton.swift */,
+				DEA36A762A2DFDFB00BA6AC9 /* AlertDialog.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 		DEAAD4642A1917980061CDCF = {
@@ -721,8 +735,10 @@
 				DED129DF2A2661DA00AD4D59 /* TeamDetailsPresenter.swift in Sources */,
 				DE9EC1B02A1CE46B006CAD3D /* LeaguesPresenterInterface.swift in Sources */,
 				DED129EC2A266F7F00AD4D59 /* FavoriteTableViewInterface.swift in Sources */,
+				DEA36A752A2DF87A00BA6AC9 /* FaovriteButton.swift in Sources */,
 				DE9EC1A42A1CE251006CAD3D /* HomePresenterInterface.swift in Sources */,
 				DEB724FC2A20384000DE036B /* UpComingResponse.swift in Sources */,
+				DEA36A772A2DFDFB00BA6AC9 /* AlertDialog.swift in Sources */,
 				DED129D12A26483700AD4D59 /* SetCollectionSectionLayout.swift in Sources */,
 				DE9EC1A02A1CE234006CAD3D /* HomeViewControllerInterface.swift in Sources */,
 				DE8368FB2A1B72D2002755F7 /* HomeViewController.swift in Sources */,

@@ -8,4 +8,5 @@
 import Foundation
 protocol TeamDetailsPresenterInterface{
     func addToFav(team: Team, leagueType: String)
+    func deleteFav(teamName:String)
 }
