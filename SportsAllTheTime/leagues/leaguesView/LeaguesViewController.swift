@@ -58,14 +58,21 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         return cell
    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let leagueDetails = self.storyboard?.instantiateViewController(withIdentifier: "details") as! LeaguesDetailsViewController
-        leagueDetails.leagueType = self.leagueType      
-        if(isFilterd!){
-            leagueDetails.leagueId = filteredData[indexPath.row].league_key
+        if NetworkReachability.checkNetworkConnection(){
+            let leagueDetails = self.storyboard?.instantiateViewController(withIdentifier: "details") as! LeaguesDetailsViewController
+            leagueDetails.leagueType = self.leagueType
+            if(isFilterd!){
+                leagueDetails.leagueId = filteredData[indexPath.row].league_key
+            }else{
+                leagueDetails.leagueId = league[indexPath.row].league_key
+            }
+            self.navigationController?.pushViewController(leagueDetails, animated: true)
         }else{
-            leagueDetails.leagueId = league[indexPath.row].league_key
+            let alert:UIAlertController = UIAlertController(title: "No Connetction", message: "Check your connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert,animated: true,completion: nil)
         }
-        self.navigationController?.pushViewController(leagueDetails, animated: true)
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

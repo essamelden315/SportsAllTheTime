@@ -69,16 +69,23 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     // did select row for teams collection view
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == secondColletionView){
-            let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
-            teamDetails.team = teams[indexPath.row]
-            teamDetails.leagueType = leagueType
-            let res = presenter?.findTeamByID(id: Int(teams[indexPath.row].team_key!))
-            if res == 0{
-                teamDetails.isFavorite=false
+            if NetworkReachability.checkNetworkConnection() {
+                let teamDetails = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamsDetailsViewController
+                teamDetails.team = teams[indexPath.row]
+                teamDetails.leagueType = leagueType
+                let res = presenter?.findTeamByID(id: Int(teams[indexPath.row].team_key!))
+                if res == 0{
+                    teamDetails.isFavorite=false
+                }else{
+                    teamDetails.isFavorite=true
+                }
+                self.navigationController?.pushViewController(teamDetails, animated: true)
             }else{
-                teamDetails.isFavorite=true
+                let alert:UIAlertController = UIAlertController(title: "No Connetction", message: "Check your connection", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert,animated: true,completion: nil)
             }
-            self.navigationController?.pushViewController(teamDetails, animated: true)
+            
         }
     }
     //table view

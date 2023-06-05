@@ -43,10 +43,16 @@ class HomeViewController: UICollectionViewController,HomeViewControllerInterface
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let league = self.storyboard?.instantiateViewController(withIdentifier: "league") as! LeaguesViewController
-        league.leagueType = listNames[indexPath.row]
-        self.navigationController?.pushViewController(league, animated: true)
-        print(listNames[indexPath.row])
+        if NetworkReachability.checkNetworkConnection(){
+            let league = self.storyboard?.instantiateViewController(withIdentifier: "league") as! LeaguesViewController
+            league.leagueType = listNames[indexPath.row]
+            self.navigationController?.pushViewController(league, animated: true)
+            print(listNames[indexPath.row])
+        }else{
+            let alert:UIAlertController = UIAlertController(title: "No Connetction", message: "Check your connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert,animated: true,completion: nil)
+        }
     }
     
 

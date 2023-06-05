@@ -66,6 +66,7 @@
 		DED129EA2A266F0800AD4D59 /* FavoritePresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129E92A266F0800AD4D59 /* FavoritePresenterInterface.swift */; };
 		DED129EC2A266F7F00AD4D59 /* FavoriteTableViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED129EB2A266F7F00AD4D59 /* FavoriteTableViewInterface.swift */; };
 		DEDBAD7E2A1EA4C90058F375 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDBAD7D2A1EA4C90058F375 /* DetailsTableViewCell.swift */; };
+		DEDC317B2A2E114E00204B83 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDC317A2A2E114E00204B83 /* NetworkReachability.swift */; };
 		DEE496502A2818AD009C569F /* MockConcreteRemoteTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE4964F2A2818AD009C569F /* MockConcreteRemoteTest.swift */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +155,7 @@
 		DED129E92A266F0800AD4D59 /* FavoritePresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenterInterface.swift; sourceTree = "<group>"; };
 		DED129EB2A266F7F00AD4D59 /* FavoriteTableViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewInterface.swift; sourceTree = "<group>"; };
 		DEDBAD7D2A1EA4C90058F375 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
+		DEDC317A2A2E114E00204B83 /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		DEE4964F2A2818AD009C569F /* MockConcreteRemoteTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConcreteRemoteTest.swift; sourceTree = "<group>"; };
 		FBE9F6213592985F487F87AD /* Pods_SportsAllTheTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsAllTheTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1A7CE7D5C5F1CED0313B04 /* Pods-SportsAllTheTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsAllTheTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-SportsAllTheTimeTests/Pods-SportsAllTheTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			children = (
 				DE6E54892A1FCC2100BC000D /* RemoteDataSource.swift */,
 				DE6E548B2A1FCC6100BC000D /* ConcreteRmote.swift */,
+				DEDC317A2A2E114E00204B83 /* NetworkReachability.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				DE9EC1A02A1CE234006CAD3D /* HomeViewControllerInterface.swift in Sources */,
 				DE8368FB2A1B72D2002755F7 /* HomeViewController.swift in Sources */,
 				DE33EDD72A1D10A400DA2EB2 /* LeaguesDetailsViewController.swift in Sources */,
+				DEDC317B2A2E114E00204B83 /* NetworkReachability.swift in Sources */,
 				DE6CE85C2A1F060D00F11719 /* DetailsLeaguePresenterInterface.swift in Sources */,
 				DEAAD4712A1917980061CDCF /* AppDelegate.swift in Sources */,
 				DE9EC1AA2A1CE414006CAD3D /* LeaguesViewController.swift in Sources */,
