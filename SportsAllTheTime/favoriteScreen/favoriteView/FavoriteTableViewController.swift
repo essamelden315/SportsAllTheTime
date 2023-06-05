@@ -35,7 +35,14 @@ class FavoriteTableViewController: UITableViewController, FavoriteTableViewInter
     }
   
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         presenter?.getLeagueTeams(type: (favoritesList![indexPath.row].type).lowercased(), leagueID: "", teamId: favoritesList![indexPath.row].key)
+        if NetworkReachability.checkNetworkConnection() {
+            presenter?.getLeagueTeams(type: (favoritesList![indexPath.row].type).lowercased(), leagueID: "", teamId: favoritesList![indexPath.row].key)
+        }else{
+            let alert:UIAlertController = UIAlertController(title: "No Connetction", message: "Check your connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert,animated: true,completion: nil)
+        }
+        
         
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
