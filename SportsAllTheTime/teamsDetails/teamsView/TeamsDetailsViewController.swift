@@ -11,6 +11,7 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
   @IBOutlet weak private var teamName: UILabel!
   @IBOutlet weak private var teamImage: UIImageView!
   @IBOutlet weak private var myTableView: UITableView!
+    @IBOutlet weak var favBtn: UIButton!
     let networkIndication = UIActivityIndicatorView(style: .large)
     var team:Team?
     var leagueType:String?
@@ -77,17 +78,18 @@ class TeamsDetailsViewController: UIViewController,UITableViewDelegate,UITableVi
     
     @IBAction func favoriteBtn(_ sender: UIButton) {
         if isFavorite!{
-            paintTheButton(isPaint: isFavorite!)
             isFavorite = false
-        }else{
             paintTheButton(isPaint: isFavorite!)
+            
+        }else{
             presenter?.addToFav(team: team!, leagueType: leagueType!)
             isFavorite = true
+            paintTheButton(isPaint: isFavorite!)
         }
         
     }
     
-    @IBOutlet weak var favBtn: UIButton!
+  
     func paintTheButton(isPaint:Bool){
         if isPaint{
             favBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
