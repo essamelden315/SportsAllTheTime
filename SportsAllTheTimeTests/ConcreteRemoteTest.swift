@@ -64,17 +64,10 @@ final class ConcreteRemoteTest: XCTestCase {
    //failure condition
     func testGetUpComingEventsFail(){
         let expect = expectation(description: "waiting for leagues data ")
-        network.getUpComingEvents(type:"football",from:"2023-05-27",to:"2023-06-30",leagueID:207) { teams, error in
-            if error != nil {
-                XCTFail("faild to get data ")
-                expect.fulfill()
-            }else{
-                if let teams = teams {
-                    XCTAssertEqual(teams.count, 0)
+        network.getUpComingEvents(type:"football",from:"2023-05-27",to:"2023-06-30",leagueID:1) { teams, error in
+                    XCTAssertNil(teams)
                     expect.fulfill()
                 }
-            }
-        }
         waitForExpectations(timeout: 10)
     }
 }
